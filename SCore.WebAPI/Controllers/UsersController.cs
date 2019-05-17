@@ -3,57 +3,56 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using SCore.BLL.Interfaces;
 using SCore.BLL.Models;
-using SCore.DAL.EF;
 using SCore.Models;
 using SCore.WEB.ViewModels;
 
 namespace SCore.WebAPI.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class UsersController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
-        private readonly IProductService productService;
-
-        public ProductsController(ApplicationDbContext context, IProductService _productService)
+        private readonly IUserService userService;
+        private readonly IFileManager fileManager;
+        private readonly UserManager<User> userManager;
+        public UsersController(IUserService _userService, IFileManager _fileManager, UserManager<User> _userManager)
         {
-            _context = context;
-            productService = _productService;
+            userService = _userService;
+            fileManager = _fileManager;
+            userManager = _userManager;
         }
-
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<User>>> GetUser()
         {
-            return Ok(await productService.GetAll());
+            return Ok(await userService.GetAll());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public async Task<ActionResult<User>> GetUser(string id)
         {
-            var product = await productService.Get(id); ;
-            if (product == null)
+            var user = await userService.Get(id); ;
+            if (user == null)
             {
                 return NotFound();
             }
-            return product;
+            return user;
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditProduct(int id, [FromForm]ProductViewModel model)
+        public async Task<IActionResult> EditProduct(int id, [FromForm]UserViewModel model)
         {
-            var product = new ProductModel
+            var user = new UserModel
             {
-                ProductId = model.ProductId,
-                Date = model.Date,
-                Description = model.Description,
+
                 Name = model.Name,
-                Price = model.Price,
-                Images = model.Images
+                LastName = model.LastName,
+                Email = model.Email,
+                CurrentAvatar = model.Avatar,
+                
             };
 
             if (id != product.ProductId)

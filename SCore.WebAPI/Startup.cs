@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DocumentFormat.OpenXml.Drawing.Charts;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -15,6 +16,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using SCore.BLL.Infrastructure;
 using SCore.BLL.Interfaces;
 using SCore.BLL.Models;
 using SCore.BLL.Services;
@@ -94,6 +97,21 @@ namespace SCore.WebAPI
                      options.LoginPath = "/Account/LogIn";
 
                  });
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                   .AddJwtBearer(options =>
+                   {
+                       options.RequireHttpsMetadata = false;
+                       options.TokenValidationParameters = new TokenValidationParameters
+                       {
+                            ValidateIssuer = true,
+                            ValidIssuer = AuthOptions.ISSUER,
+                            ValidateAudience = true,
+                            ValidAudience = AuthOptions.AUDIENCE,
+                            ValidateLifetime = true,
+                            IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+                            ValidateIssuerSigningKey = true,
+                       };
+                   });
 
             services.AddMemoryCache();
             services.AddSession();
