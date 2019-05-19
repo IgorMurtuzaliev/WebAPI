@@ -1,16 +1,17 @@
 ﻿using SCore.BLL.Models;
 using SCore.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SCore.BLL.Interfaces
 {
     public interface IUserService
     {
-        void Create(User user);
-        IEnumerable<User> GetAll();
-        void Edit(UserModel model);
-        User Get(string id);
-        void Delete(string id);
+        Task Create(User user);
+        Task<IEnumerable<User>> GetAll();
+        Task Edit(UserModel model);
+        Task<User> Get(string id);
+        Task Delete(string id);
         void Dispose(bool disposing);
     }
 }

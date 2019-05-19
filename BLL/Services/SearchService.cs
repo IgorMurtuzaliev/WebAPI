@@ -40,6 +40,10 @@ namespace SCore.BLL.Services
         {
             return context.Orders.Where(p => p.User.Name.Contains(search) || p.User.LastName.Contains(search) || p.User.UserName.Contains(search)).Where(c => c.TimeOfOrder > from && c.TimeOfOrder < to).ToList();
         }
+        public List<Order> GetAll()
+        {
+            return context.Orders.ToList();
+        }
         public List<Order> Search(DateTime? from, DateTime? to, string search)
         {
             if ((from != null || to != null) && search != null)
@@ -57,8 +61,8 @@ namespace SCore.BLL.Services
                 var orders = FindByUser(search);
                 return orders;
             }
-            
-            return orderService.GetAll().ToList();
+
+            return GetAll();
         }
 
         public XLWorkbook ExportToExcel(DateTime? from, DateTime? to, string search)

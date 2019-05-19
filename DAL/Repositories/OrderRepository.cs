@@ -37,7 +37,7 @@ namespace SCore.DAL.Repositories
 
         }
 
-        public async Task Delete(string id)
+        public Task Delete(string id)
         {
             throw new NotImplementedException();
         }
@@ -58,7 +58,7 @@ namespace SCore.DAL.Repositories
             return await db.Orders.FindAsync(id);
         }
 
-        public async Task<Order> Get(string id)
+        public Task<Order> Get(string id)
         {
             throw new NotImplementedException();
         }
@@ -70,7 +70,7 @@ namespace SCore.DAL.Repositories
 
         public async Task Save()
         {
-            db.SaveChanges();
+            await db.SaveChangesAsync();
         }
 
     }

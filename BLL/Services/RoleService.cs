@@ -55,10 +55,13 @@ namespace SCore.BLL.Services
         }
         public IEnumerable<ApplicationRole> GetAll()
         {
-           var roles = _roleManager.Roles.ToList();
-           return roles;
+           return _roleManager.Roles.ToList();
         }
 
+        public async Task<ApplicationRole> GetRole(string id)
+        {
+            return await _roleManager.FindByIdAsync(id);
+        }
     }
 
 }

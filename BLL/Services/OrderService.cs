@@ -8,6 +8,7 @@ using SCore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SCore.BLL.Services
 {
@@ -22,7 +23,7 @@ namespace SCore.BLL.Services
             userManager = _userManager;
             context = _context;
         }
-        public void Create(OrderModel orderVM)
+        public async Task Create(OrderModel orderVM)
         {
             var order = new Order
             {
@@ -37,32 +38,32 @@ namespace SCore.BLL.Services
                 Amount = orderVM.Amount,
             };
             order.ProductOrders.Add(orderproduct);
-            Product product = db.Products.Get(orderproduct.ProductId);
+            Product product = await db.Products.Get(orderproduct.ProductId);
             order.Sum += product.ProductId * orderproduct.Amount;
-            db.Orders.Create(order);
+            await db.Orders.Create(order);
              db.Save();
 
         }
 
-        public Order Get(int id)
+        public async Task<Order> Get(int id)
         {
-            return db.Orders.Get(id);
+            return await db.Orders.Get(id);
         }
-        public IEnumerable<Order> GetAll()
+        public async Task<IEnumerable<Order>> GetAll()
         {
-            return db.Orders.GetAll();
-        }
-
-        public void Edit(Order order)
-        {
-            db.Orders.Edit(order);
-            db.Orders.Save();
+            return  await db.Orders.GetAll();
         }
 
-        public void Delete(int id)
+        public async Task Edit(Order order)
         {
-            db.Orders.Delete(id);
-            db.Orders.Save();
+            await db.Orders.Edit(order);
+            await db.Orders.Save();
+        }
+
+        public async Task Delete(int id)
+        {
+            await db.Orders.Delete(id);
+            await db.Orders.Save();
         }
 
         public void Dispose(bool disposing)

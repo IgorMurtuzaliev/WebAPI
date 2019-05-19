@@ -11,6 +11,7 @@ using SCore.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace SCore.BLL.Services
 {
@@ -28,7 +29,7 @@ namespace SCore.BLL.Services
             context = _context;
         }
 
-        public async void Create(ProductModel model)
+        public async Task Create(ProductModel model)
         {
             Product product = new Product
             {
@@ -38,8 +39,8 @@ namespace SCore.BLL.Services
                 Name = model.Name,
                 Price = model.Price
             };
-            db.Products.Create(product);
-            db.Products.Save();
+            await db.Products.Create(product);
+            await db.Products.Save();
             foreach(var file in model.Images)
             {
                 string path = "/Files/" + file.FileName;
@@ -54,23 +55,23 @@ namespace SCore.BLL.Services
             }         
         }
 
-        public Product Get(int id)
+        public async Task<Product> Get(int id)
         {
-            return db.Products.Get(id);
+            return await db.Products.Get(id);
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            db.Products.Delete(id);
-            db.Products.Save();
+            await db.Products.Delete(id);
+            await db.Products.Save();
         }
 
-        public IEnumerable<Product> GetAll()
+        public async Task<IEnumerable<Product>> GetAll()
         {
-            return db.Products.GetAll();
+            return await db.Products.GetAll();
         }
 
-        public void Edit(ProductModel model)
+        public async Task Edit(ProductModel model)
         {
             Product product = new Product
             {
@@ -80,8 +81,8 @@ namespace SCore.BLL.Services
                 Name = model.Name,
                 Price = model.Price
             };
-            db.Products.Edit(product);
-            db.Products.Save();
+            await db.Products.Edit(product);
+            await db.Products.Save();
         }
 
         public void Dispose(bool disposing)

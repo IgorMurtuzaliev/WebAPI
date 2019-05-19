@@ -61,7 +61,7 @@ namespace SCore.DAL.Repositories
 
         public async Task Save()
         {
-            db.SaveChanges();
+            await db.SaveChangesAsync();
         }
     }
 }

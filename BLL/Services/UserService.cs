@@ -3,6 +3,7 @@ using SCore.BLL.Models;
 using SCore.DAL.Interfaces;
 using SCore.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SCore.BLL.Services
 {
@@ -16,50 +17,50 @@ namespace SCore.BLL.Services
             fileManager = _fileManager;
         }
 
-        public void Create(User user)
+        public async Task Create(User user)
         {
-            db.Users.Create(user);
-            db.Users.Save();
+            await db.Users.Create(user);
+            await db.Users.Save();
         }
 
-        public User Get(int id)
+        public async Task<User> Get(int id)
         {
-            return db.Users.Get(id);
+            return await db.Users.Get(id);
         }
 
      
-        public IEnumerable<User> GetAll()
+        public async Task<IEnumerable<User>> GetAll()
         {
-            return db.Users.GetAll();
+            return await db.Users.GetAll();
         }
 
-        public void Edit(UserModel model)
+        public async Task Edit(UserModel model)
         {
-            var user = Get(model.Id);
-            if (user!= null)
+            User user = await Get(model.Id);
+            if (user != null)
             {
                 user.Name = model.Name;
-            user.LastName = model.LastName;
-            user.Email = model.Email;
+                user.LastName = model.LastName;
+                user.Email = model.Email;
             }
             if (model.Avatar == null) user.Avatar = model.CurrentAvatar;
             if (model.Avatar != null)
             {
                 user.Avatar = fileManager.SaveImage(model.Avatar);
             }
-            db.Users.Edit(user);
-            db.Users.Save();
+            await db.Users.Edit(user);
+            await db.Users.Save();
         }
 
-        public User Get(string id)
+        public async Task<User> Get(string id)
         {
-            return db.Users.Get(id);
+            return await db.Users.Get(id);
         }
 
-        public void Delete(string id)
+        public async Task Delete(string id)
         {
-            db.Users.Delete(id);
-            db.Users.Save();
+            await db.Users.Delete(id);
+            await db.Users.Save();
         }
 
         public void Dispose(bool disposing)

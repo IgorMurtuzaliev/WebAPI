@@ -27,9 +27,9 @@ namespace SCore.WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ApplicationRole>>> GetRoles()
+        public ActionResult<IEnumerable<ApplicationRole>> GetRoles()
         {
-            return Ok(await roleService.GetAll());
+            return Ok(roleService.GetAll());
         }
 
         [HttpGet("{id}")]

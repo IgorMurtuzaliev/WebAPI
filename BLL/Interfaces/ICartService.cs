@@ -1,10 +1,11 @@
 ﻿using SCore.BLL.Models;
+using System.Threading.Tasks;
 
 namespace SCore.BLL.Interfaces
 {
     public interface ICartService
     {
-        void AddToCart(Cart cart, int? id);
-        void RemoveFromCart(Cart cart, int? id);
+        Task AddToCart(Cart cart, int? id);
+        Task RemoveFromCart(Cart cart, int? id);
     }
 }

@@ -13,5 +13,6 @@ namespace SCore.BLL.Interfaces
         Task<IdentityResult> Edit(EditRoleModel model);
         Task Edit(string id);
         Task<IdentityResult> Delete(string id);
+        Task<ApplicationRole> GetRole(string id);
     }
 }

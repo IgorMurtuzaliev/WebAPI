@@ -3,6 +3,7 @@ using SCore.BLL.Interfaces;
 using SCore.BLL.Models;
 using SCore.DAL.Interfaces;
 using SCore.Models;
+using System.Threading.Tasks;
 
 namespace SCore.BLL.Services
 {
@@ -13,9 +14,9 @@ namespace SCore.BLL.Services
         {
             db = _db;
         }
-        public void AddToCart(Cart cart, int? id)
+        public async Task AddToCart(Cart cart, int? id)
         {
-            Product product = db.Products.Get(id);
+            Product product = await db.Products.Get(id);
             if (id == null)
             {
                 new BadRequestResult();
@@ -26,9 +27,9 @@ namespace SCore.BLL.Services
               cart.AddItem(product, 1);
             }
         }
-       public void RemoveFromCart(Cart cart, int? id)
+       public async Task RemoveFromCart(Cart cart, int? id)
         {
-            Product product = db.Products.Get(id);
+            Product product = await db.Products.Get(id);
             if (id == null)
             {
                 new BadRequestResult();

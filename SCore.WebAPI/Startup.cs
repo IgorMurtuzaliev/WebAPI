@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DocumentFormat.OpenXml.Drawing.Charts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -63,7 +62,7 @@ namespace SCore.WebAPI
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRepository<User>, UserRepository>();
             services.AddTransient<IOrderService, OrderService>();
-            //services.AddTransient<IRepository<Order>, OrderRepository>();
+            services.AddTransient<IRepository<Order>, OrderRepository>();
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<ISearchService, SearchService>();
             services.AddTransient<ICartService, CartService>();
