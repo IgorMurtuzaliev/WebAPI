@@ -9,13 +9,6 @@ C:\Users\User\source\repos\SCore.WebAPI\SCore.WebAPI\bin\Debug\netcoreapp2.2\SCo
 C:\Users\User\source\repos\SCore.WebAPI\SCore.WebAPI\bin\Debug\netcoreapp2.2\SCore.WebAPI.runtimeconfig.dev.json
 C:\Users\User\source\repos\SCore.WebAPI\SCore.WebAPI\bin\Debug\netcoreapp2.2\SCore.WebAPI.dll
 C:\Users\User\source\repos\SCore.WebAPI\SCore.WebAPI\bin\Debug\netcoreapp2.2\SCore.WebAPI.pdb
-C:\Users\User\source\repos\SCore.WebAPI\SCore.WebAPI\bin\Debug\netcoreapp2.2\SCore.BLL.dll
-C:\Users\User\source\repos\SCore.WebAPI\SCore.WebAPI\bin\Debug\netcoreapp2.2\SCore.DAL.dll
-C:\Users\User\source\repos\SCore.WebAPI\SCore.WebAPI\bin\Debug\netcoreapp2.2\SCore.Models.dll
-C:\Users\User\source\repos\SCore.WebAPI\SCore.WebAPI\bin\Debug\netcoreapp2.2\SCore.BLL.pdb
-C:\Users\User\source\repos\SCore.WebAPI\SCore.WebAPI\bin\Debug\netcoreapp2.2\SCore.DAL.pdb
-C:\Users\User\source\repos\SCore.WebAPI\SCore.WebAPI\bin\Debug\netcoreapp2.2\SCore.Models.pdb
 C:\Users\User\source\repos\SCore.WebAPI\SCore.WebAPI\obj\Debug\netcoreapp2.2\SCore.WebAPI.RazorTargetAssemblyInfo.cache
-C:\Users\User\source\repos\SCore.WebAPI\SCore.WebAPI\obj\Debug\netcoreapp2.2\SCore.WebAPI.csproj.CopyComplete
 C:\Users\User\source\repos\SCore.WebAPI\SCore.WebAPI\obj\Debug\netcoreapp2.2\SCore.WebAPI.dll
 C:\Users\User\source\repos\SCore.WebAPI\SCore.WebAPI\obj\Debug\netcoreapp2.2\SCore.WebAPI.pdb

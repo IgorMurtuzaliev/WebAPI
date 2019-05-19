@@ -4,91 +4,14 @@
     "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\SCore.WebAPI\\SCore.WebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\SCore.WebAPI\\SCore.WebAPI.csproj": {
+    "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\BLL\\SCore.BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\SCore.WebAPI\\SCore.WebAPI.csproj",
-        "projectName": "SCore.WebAPI",
-        "projectPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\SCore.WebAPI\\SCore.WebAPI.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\SCore.WebAPI\\obj\\",
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "netcoreapp2.2"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "netcoreapp2.2": {
-            "projectReferences": {
-              "C:\\Users\\User\\source\\repos\\SCore\\SCore.BLL\\SCore.BLL.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\SCore\\SCore.BLL\\SCore.BLL.csproj"
-              },
-              "C:\\Users\\User\\source\\repos\\SCore\\SCore.DAL\\SCore.DAL.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\SCore\\SCore.DAL\\SCore.DAL.csproj"
-              },
-              "C:\\Users\\User\\source\\repos\\SCore\\SCore.Models\\SCore.Models.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\SCore\\SCore.Models\\SCore.Models.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "netcoreapp2.2": {
-          "dependencies": {
-            "Microsoft.AspNetCore.App": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[2.2.0, )",
-              "autoReferenced": true
-            },
-            "Microsoft.AspNetCore.Razor.Design": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.NETCore.App": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[2.2.0, )",
-              "autoReferenced": true
-            },
-            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
-              "target": "Package",
-              "version": "[2.2.3, )"
-            }
-          },
-          "imports": [
-            "net461"
-          ],
-          "assetTargetFallback": true,
-          "warn": true
-        }
-      }
-    },
-    "C:\\Users\\User\\source\\repos\\SCore\\SCore.BLL\\SCore.BLL.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\SCore\\SCore.BLL\\SCore.BLL.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\BLL\\SCore.BLL.csproj",
         "projectName": "SCore.BLL",
-        "projectPath": "C:\\Users\\User\\source\\repos\\SCore\\SCore.BLL\\SCore.BLL.csproj",
+        "projectPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\BLL\\SCore.BLL.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\SCore\\SCore.BLL\\obj\\",
+        "outputPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\BLL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -107,11 +30,11 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "C:\\Users\\User\\source\\repos\\SCore\\SCore.DAL\\SCore.DAL.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\SCore\\SCore.DAL\\SCore.DAL.csproj"
+              "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\DAL\\SCore.DAL.csproj": {
+                "projectPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\DAL\\SCore.DAL.csproj"
               },
-              "C:\\Users\\User\\source\\repos\\SCore\\SCore.Models\\SCore.Models.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\SCore\\SCore.Models\\SCore.Models.csproj"
+              "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\Models\\SCore.Models.csproj": {
+                "projectPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\Models\\SCore.Models.csproj"
               }
             }
           }
@@ -131,7 +54,7 @@
             },
             "MailKit": {
               "target": "Package",
-              "version": "[2.1.4, )"
+              "version": "[2.1.5.1, )"
             },
             "Microsoft.AspNetCore.Http.Extensions": {
               "target": "Package",
@@ -147,7 +70,7 @@
             },
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
-              "version": "[2.2.0, )"
+              "version": "[2.2.5, )"
             },
             "Microsoft.AspNetCore.Mvc": {
               "target": "Package",
@@ -169,6 +92,10 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[5.4.0, )"
+            },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",
@@ -177,7 +104,7 @@
             },
             "MimeKit": {
               "target": "Package",
-              "version": "[2.1.4, )"
+              "version": "[2.1.5.1, )"
             }
           },
           "imports": [
@@ -188,14 +115,14 @@
         }
       }
     },
-    "C:\\Users\\User\\source\\repos\\SCore\\SCore.DAL\\SCore.DAL.csproj": {
+    "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\DAL\\SCore.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\SCore\\SCore.DAL\\SCore.DAL.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\DAL\\SCore.DAL.csproj",
         "projectName": "SCore.DAL",
-        "projectPath": "C:\\Users\\User\\source\\repos\\SCore\\SCore.DAL\\SCore.DAL.csproj",
+        "projectPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\DAL\\SCore.DAL.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\SCore\\SCore.DAL\\obj\\",
+        "outputPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -214,8 +141,8 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "C:\\Users\\User\\source\\repos\\SCore\\SCore.Models\\SCore.Models.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\SCore\\SCore.Models\\SCore.Models.csproj"
+              "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\Models\\SCore.Models.csproj": {
+                "projectPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\Models\\SCore.Models.csproj"
               }
             }
           }
@@ -276,14 +203,14 @@
         }
       }
     },
-    "C:\\Users\\User\\source\\repos\\SCore\\SCore.Models\\SCore.Models.csproj": {
+    "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\Models\\SCore.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\SCore\\SCore.Models\\SCore.Models.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\Models\\SCore.Models.csproj",
         "projectName": "SCore.Models",
-        "projectPath": "C:\\Users\\User\\source\\repos\\SCore\\SCore.Models\\SCore.Models.csproj",
+        "projectPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\Models\\SCore.Models.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\SCore\\SCore.Models\\obj\\",
+        "outputPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -329,11 +256,126 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.2.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.2.4, )"
+            },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",
               "version": "[2.2.0, )",
               "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\SCore.WebAPI\\SCore.WebAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\SCore.WebAPI\\SCore.WebAPI.csproj",
+        "projectName": "SCore.WebAPI",
+        "projectPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\SCore.WebAPI\\SCore.WebAPI.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\SCore.WebAPI\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\BLL\\SCore.BLL.csproj": {
+                "projectPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\BLL\\SCore.BLL.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "ClosedXML": {
+              "target": "Package",
+              "version": "[0.94.2, )"
+            },
+            "MicroKnights.Log4NetAdoNetAppender": {
+              "target": "Package",
+              "version": "[1.0.2, )"
+            },
+            "Microsoft.AspNetCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.AspNetCore.Authentication.Google": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Razor.Design": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.2.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.2.4, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[2.2.3, )"
+            },
+            "log4net": {
+              "target": "Package",
+              "version": "[2.0.8, )"
             }
           },
           "imports": [

@@ -6,19 +6,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.94.2" />
+    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="MicroKnights.Log4NetAdoNetAppender" Version="1.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.4" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\SCore\SCore.BLL\SCore.BLL.csproj" />
-    <ProjectReference Include="..\..\SCore\SCore.DAL\SCore.DAL.csproj" />
-    <ProjectReference Include="..\..\SCore\SCore.Models\SCore.Models.csproj" />
+    <Folder Include="wwwroot\Files\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Files\" />
+    <ProjectReference Include="..\BLL\SCore.BLL.csproj" />
   </ItemGroup>
 
 </Project>
