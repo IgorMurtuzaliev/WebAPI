@@ -4,6 +4,7 @@ using SCore.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SCore.DAL.Repositories
 {
@@ -15,47 +16,47 @@ namespace SCore.DAL.Repositories
             this.db = context;
         }
 
-        public void Create(FileModel item)
+        public async Task Create(FileModel item)
         {
-            db.Files.Add(item);
+            await db.Files.AddAsync(item);
         }
 
-        public void Delete(int? id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(string id)
+        public Task Delete(int? id)
         {
             throw new NotImplementedException();
         }
 
-        public void Edit(FileModel item)
+        public Task Delete(string id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<FileModel> Find(Func<FileModel, bool> predicate)
+        public Task Edit(FileModel item)
         {
             throw new NotImplementedException();
         }
 
-        public FileModel Get(int? id)
+        //public IEnumerable<FileModel> Find(Func<FileModel, bool> predicate)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        public Task<FileModel> Get(int? id)
         {
             throw new NotImplementedException();
         }
 
-        public FileModel Get(string id)
+        public Task<FileModel> Get(string id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<FileModel> GetAll()
+        public Task<IEnumerable<FileModel>> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public void Save()
+        public Task Save()
         {
             throw new NotImplementedException();
         }

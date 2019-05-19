@@ -3,6 +3,7 @@ using SCore.DAL.Interfaces;
 using SCore.Models;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SCore.DAL.Repositories
 {
@@ -13,47 +14,47 @@ namespace SCore.DAL.Repositories
         {
             this.db = context;
         }
-        public void Create(ProductOrder item)
+        public async Task Create(ProductOrder item)
         {
-            db.ProductOrders.Add(item);
+            await db.ProductOrders.AddAsync(item);
         }
 
-        public void Delete(int? id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(string id)
+        public Task Delete(int? id)
         {
             throw new NotImplementedException();
         }
 
-        public void Edit(ProductOrder item)
+        public Task Delete(string id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<ProductOrder> Find(Func<ProductOrder, bool> predicate)
+        public Task Edit(ProductOrder item)
         {
             throw new NotImplementedException();
         }
 
-        public ProductOrder Get(int? id)
+        //public Task<IEnumerable<ProductOrder>> Find(Func<ProductOrder, bool> predicate)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        public Task<ProductOrder> Get(int? id)
         {
             throw new NotImplementedException();
         }
 
-        public ProductOrder Get(string id)
+        public Task<ProductOrder> Get(string id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<ProductOrder> GetAll()
+        public Task<IEnumerable<ProductOrder>> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public void Save()
+        public Task Save()
         {
             throw new NotImplementedException();
         }

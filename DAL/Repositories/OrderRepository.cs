@@ -5,6 +5,7 @@ using SCore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SCore.DAL.Repositories
 {
@@ -16,14 +17,14 @@ namespace SCore.DAL.Repositories
             this.db = context;
         }
 
-        public void Create(Order item)
+        public async Task Create(Order item)
         {
-            db.Orders.Add(item);
+            await db.Orders.AddAsync(item);
         }
 
-        public void Delete(int? id)
+        public async Task Delete(int? id)
         {
-            Order order = db.Orders.Find(id);
+            Order order = await db.Orders.FindAsync(id);
             if (order != null)
             {
                 foreach(var item in order.ProductOrders)
@@ -36,37 +37,38 @@ namespace SCore.DAL.Repositories
 
         }
 
-        public void Delete(string id)
+        public async Task Delete(string id)
         {
             throw new NotImplementedException();
         }
 
-        public void Edit(Order item)
+        public async Task Edit(Order item)
         {
             db.Entry(item).State = EntityState.Modified;
+            await Save();
         }
 
-        public IEnumerable<Order> Find(Func<Order, bool> predicate)
+        //public async Task<IEnumerable<Order>> Find(Func<Order, bool> predicate)
+        //{
+        //    return db.Orders.Where(predicate).ToList();
+        //}
+
+        public async Task<Order> Get(int? id)
         {
-            return db.Orders.Where(predicate).ToList();
+            return await db.Orders.FindAsync(id);
         }
 
-        public Order Get(int? id)
-        {
-            return db.Orders.Find(id);
-        }
-
-        public Order Get(string id)
+        public async Task<Order> Get(string id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Order> GetAll()
+        public async Task<IEnumerable<Order>> GetAll()
         {
-            return db.Orders.Include(c=>c.User).ToList();
+            return await db.Orders.Include(c=>c.User).ToListAsync();
         }
 
-        public void Save()
+        public async Task Save()
         {
             db.SaveChanges();
         }

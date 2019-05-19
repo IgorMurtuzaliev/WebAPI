@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SCore.DAL.Interfaces
 {
     public interface IRepository<T> where T : class
     {
-        IEnumerable<T> GetAll();
-        T Get(int? id);
-        IEnumerable<T> Find(Func<T, Boolean> predicate);
-        void Create(T item);
-        void Edit(T item);
-        void Delete(int? id);
-        void Save();
-        void Delete(string id);
-        T Get(string id);
+        Task<IEnumerable<T>> GetAll();
+        Task<T> Get(int? id);
+        //IEnumerable<T> Find(Func<T, Boolean> predicate);
+        Task Create(T item);
+        Task Edit(T item);
+        Task Delete(int? id);
+        Task Save();
+        Task Delete(string id);
+        Task<T> Get(string id);
     }
 }

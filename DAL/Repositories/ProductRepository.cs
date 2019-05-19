@@ -5,6 +5,7 @@ using SCore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SCore.DAL.Repositories
 {
@@ -15,49 +16,50 @@ namespace SCore.DAL.Repositories
         {
             this.db = context;
         }
-        public void Create(Product item)
+        public async Task Create(Product item)
         {
-            db.Products.Add(item);
+            await db.Products.AddAsync(item);
         }
 
-        public void Delete(int? id)
+        public async Task Delete(int? id)
         {
-            Product product = db.Products.Find(id);
+            Product product = await db.Products.FindAsync(id);
             if (product != null)
                 db.Products.Remove(product);
         }
 
-        public void Delete(string id)
+        public Task Delete(string id)
         {
             throw new NotImplementedException();
         }
 
-        public void Edit(Product item)
+        public async Task Edit(Product item)
         {
             db.Entry(item).State = EntityState.Modified;
+            await Save();
         }
 
-        public IEnumerable<Product> Find(Func<Product, bool> predicate)
+        //public IEnumerable<Product> Find(Func<Product, bool> predicate)
+        //{
+        //    return db.Products.Where(predicate).ToList();
+        //}
+
+        public async Task<Product> Get(int? id)
         {
-            return db.Products.Where(predicate).ToList();
+            return await db.Products.FindAsync(id);
         }
 
-        public Product Get(int? id)
-        {
-            return db.Products.Find(id);
-        }
-
-        public Product Get(string id)
+        public Task<Product> Get(string id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Product> GetAll()
+        public async Task<IEnumerable<Product>> GetAll()
         {
-            return db.Products.ToList();
+            return await db.Products.ToListAsync();
         }
 
-        public void Save()
+        public async Task Save()
         {
             db.SaveChanges();
         }

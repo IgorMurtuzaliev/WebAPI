@@ -5,6 +5,7 @@ using SCore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SCore.DAL.Repositories
 {
@@ -15,49 +16,50 @@ namespace SCore.DAL.Repositories
         {
             db = context;
         }
-        public void Create(User item)
+        public async Task Create(User item)
         {
-            db.Users.Add(item);
+           await db.Users.AddAsync(item);
         }
 
-        public void Delete(int? id)
+        public Task Delete(int? id)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(string id)
+        public async Task Delete(string id)
         {
-            User user = db.Users.Find(id);
+            User user = await db.Users.FindAsync(id);
             if (user != null)
                 db.Users.Remove(user);
         }
 
-        public void Edit(User item)
+        public async Task Edit(User item)
         {
             db.Entry(item).State = EntityState.Modified;
+            await Save();
         }
 
-        public IEnumerable<User> Find(Func<User, bool> predicate)
+        //public IEnumerable<User> Find(Func<User, bool> predicate)
+        //{
+        //    return db.Users.Where(predicate).ToList();
+        //}
+
+        public async Task<User> Get(string id)
         {
-            return db.Users.Where(predicate).ToList();
+            return await db.Users.FindAsync(id);
         }
 
-        public User Get(string id)
-        {
-            return db.Users.Find(id);
-        }
-
-        public User Get(int? id)
+        public Task<User> Get(int? id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<User> GetAll()
+        public async Task<IEnumerable<User>> GetAll()
         {
-            return db.Users.ToList();
+            return await db.Users.ToListAsync();
         }
 
-        public void Save()
+        public async Task Save()
         {
             db.SaveChanges();
         }
