@@ -114,5 +114,11 @@ namespace SCore.WebAPI.Controllers
             Response.ContentType = "application/json";
             await Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
         }
+
+        [HttpGet]
+        public  string Name()
+        {
+            return User.Identity.Name;
+        }
     }
 }

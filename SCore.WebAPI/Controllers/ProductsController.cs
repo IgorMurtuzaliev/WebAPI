@@ -26,7 +26,7 @@ namespace SCore.WebAPI.Controllers
             productService = _productService;
             _context = context;
         }
-        [Authorize]
+        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
