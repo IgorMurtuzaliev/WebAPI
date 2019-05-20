@@ -78,25 +78,12 @@ namespace SCore.WebAPI
             });
             services.AddHttpContextAccessor();
 
-            services.AddAuthentication(options =>
-            {
-                options.DefaultSignOutScheme = IdentityConstants.ApplicationScheme;
-            })
-                .AddGoogle("Google", options =>
-                {
-                    options.ClientId = "405558759348-lv7doblutrpkqda42km1b1kd8eilcqu9.apps.googleusercontent.com";
-                    options.ClientSecret = "c4pXS08zF9tzsKpMMyei3b-i";
-                })
-                .AddFacebook(options => {
-                    options.AppId = "2895392233805084";
-                    options.AppSecret = "c43fdffef09ddf0436fc7f3eb66f18f2";
-                })
-                 .AddCookie(options =>
-                 {
-                     options.LoginPath = "/Account/LogIn";
 
-                 });
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            services.AddAuthentication(options=>
+            {   options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
                    .AddJwtBearer(options =>
                    {
                        options.RequireHttpsMetadata = false;
