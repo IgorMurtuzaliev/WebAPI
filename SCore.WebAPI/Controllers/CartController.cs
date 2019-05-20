@@ -28,8 +28,9 @@ namespace SCore.WebAPI.Controllers
             var cart = new CartIndexViewModel
             {
                 Cart = GetCart(),
+                
             };
-            return Ok(cart);
+            return Ok(cart.Cart.Lines.ToList());
         }
         [HttpPost]
         public async Task<IActionResult> AddToCart([FromForm]int productId)
