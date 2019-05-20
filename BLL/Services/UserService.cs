@@ -1,8 +1,10 @@
 ﻿using SCore.BLL.Interfaces;
 using SCore.BLL.Models;
+using SCore.DAL.EF;
 using SCore.DAL.Interfaces;
 using SCore.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SCore.BLL.Services
@@ -11,14 +13,27 @@ namespace SCore.BLL.Services
     {
         IUnitOfWork db { get; set; }
         private readonly IFileManager fileManager;
-        public UserService(IUnitOfWork _db, IFileManager _fileManager)
+        private ApplicationDbContext context;
+        public UserService(IUnitOfWork _db, IFileManager _fileManager,ApplicationDbContext _context)
         {
             db = _db;
             fileManager = _fileManager;
+            context = _context;
         }
 
-        public async Task Create(User user)
+        public async Task Create(UserModel model)
         {
+            User user = new User
+            {
+                Name = model.Name,
+                LastName = model.LastName,
+                Email = model.Email,
+                Id = model.Id,
+            };
+            if (model.Avatar != null)
+            {
+                user.Avatar = fileManager.SaveImage(model.Avatar);
+            }
             await db.Users.Create(user);
             await db.Users.Save();
         }
@@ -66,6 +81,16 @@ namespace SCore.BLL.Services
         public void Dispose(bool disposing)
         {
             db.Dispose(disposing);
+        }
+
+        public async Task Save()
+        {
+            await db.Users.Save();
+        }
+
+        public bool UserExists(string id)
+        {
+            return context.Users.Any(e => e.Id == id);
         }
     }
 }

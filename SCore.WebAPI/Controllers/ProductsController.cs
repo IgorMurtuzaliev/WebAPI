@@ -17,13 +17,13 @@ namespace SCore.WebAPI.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
         private readonly IProductService productService;
+        private ApplicationDbContext _context;
 
-        public ProductsController(ApplicationDbContext context, IProductService _productService)
+        public ProductsController(IProductService _productService, ApplicationDbContext context)
         {
-            _context = context;
             productService = _productService;
+            _context = context;
         }
 
         [HttpGet]
@@ -111,7 +111,7 @@ namespace SCore.WebAPI.Controllers
 
         private bool ProductExists(int id)
         {
-            return _context.Products.Any(e => e.ProductId == id);
+            return productService.ProductExists(id);
         }
     }
 }

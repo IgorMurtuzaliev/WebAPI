@@ -7,3 +7,12 @@ C:\Users\User\source\repos\SCore.WebAPI\Models\obj\Debug\netcoreapp2.2\SCore.Mod
 C:\Users\User\source\repos\SCore.WebAPI\Models\bin\Debug\netcoreapp2.2\SCore.Models.pdb
 C:\Users\User\source\repos\SCore.WebAPI\Models\obj\Debug\netcoreapp2.2\SCore.Models.dll
 C:\Users\User\source\repos\SCore.WebAPI\Models\obj\Debug\netcoreapp2.2\SCore.Models.pdb
+c:\Users\ingwa\source\repos\WebAPI\Models\bin\Debug\netcoreapp2.2\SCore.Models.deps.json
+c:\Users\ingwa\source\repos\WebAPI\Models\bin\Debug\netcoreapp2.2\SCore.Models.dll
+c:\Users\ingwa\source\repos\WebAPI\Models\bin\Debug\netcoreapp2.2\SCore.Models.pdb
+c:\Users\ingwa\source\repos\WebAPI\Models\obj\Debug\netcoreapp2.2\SCore.Models.csprojAssemblyReference.cache
+c:\Users\ingwa\source\repos\WebAPI\Models\obj\Debug\netcoreapp2.2\SCore.Models.csproj.CoreCompileInputs.cache
+c:\Users\ingwa\source\repos\WebAPI\Models\obj\Debug\netcoreapp2.2\SCore.Models.AssemblyInfoInputs.cache
+c:\Users\ingwa\source\repos\WebAPI\Models\obj\Debug\netcoreapp2.2\SCore.Models.AssemblyInfo.cs
+c:\Users\ingwa\source\repos\WebAPI\Models\obj\Debug\netcoreapp2.2\SCore.Models.dll
+c:\Users\ingwa\source\repos\WebAPI\Models\obj\Debug\netcoreapp2.2\SCore.Models.pdb

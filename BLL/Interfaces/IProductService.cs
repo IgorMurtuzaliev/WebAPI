@@ -13,5 +13,7 @@ namespace SCore.BLL.Interfaces
         Task<IEnumerable<Product>> GetAll();
         Task Edit(ProductModel model);
         void Dispose(bool disposing);
+        Task Save();
+        bool ProductExists(int id);
     }
 }

@@ -12,3 +12,17 @@ C:\Users\User\source\repos\SCore.WebAPI\BLL\bin\Debug\netcoreapp2.2\SCore.Models
 C:\Users\User\source\repos\SCore.WebAPI\BLL\obj\Debug\netcoreapp2.2\SCore.BLL.csproj.CopyComplete
 C:\Users\User\source\repos\SCore.WebAPI\BLL\obj\Debug\netcoreapp2.2\SCore.BLL.dll
 C:\Users\User\source\repos\SCore.WebAPI\BLL\obj\Debug\netcoreapp2.2\SCore.BLL.pdb
+c:\Users\ingwa\source\repos\WebAPI\BLL\bin\Debug\netcoreapp2.2\SCore.BLL.deps.json
+c:\Users\ingwa\source\repos\WebAPI\BLL\bin\Debug\netcoreapp2.2\SCore.BLL.dll
+c:\Users\ingwa\source\repos\WebAPI\BLL\bin\Debug\netcoreapp2.2\SCore.BLL.pdb
+c:\Users\ingwa\source\repos\WebAPI\BLL\bin\Debug\netcoreapp2.2\SCore.DAL.dll
+c:\Users\ingwa\source\repos\WebAPI\BLL\bin\Debug\netcoreapp2.2\SCore.Models.dll
+c:\Users\ingwa\source\repos\WebAPI\BLL\bin\Debug\netcoreapp2.2\SCore.DAL.pdb
+c:\Users\ingwa\source\repos\WebAPI\BLL\bin\Debug\netcoreapp2.2\SCore.Models.pdb
+c:\Users\ingwa\source\repos\WebAPI\BLL\obj\Debug\netcoreapp2.2\SCore.BLL.csprojAssemblyReference.cache
+c:\Users\ingwa\source\repos\WebAPI\BLL\obj\Debug\netcoreapp2.2\SCore.BLL.csproj.CoreCompileInputs.cache
+c:\Users\ingwa\source\repos\WebAPI\BLL\obj\Debug\netcoreapp2.2\SCore.BLL.AssemblyInfoInputs.cache
+c:\Users\ingwa\source\repos\WebAPI\BLL\obj\Debug\netcoreapp2.2\SCore.BLL.AssemblyInfo.cs
+c:\Users\ingwa\source\repos\WebAPI\BLL\obj\Debug\netcoreapp2.2\SCore.BLL.csproj.CopyComplete
+c:\Users\ingwa\source\repos\WebAPI\BLL\obj\Debug\netcoreapp2.2\SCore.BLL.dll
+c:\Users\ingwa\source\repos\WebAPI\BLL\obj\Debug\netcoreapp2.2\SCore.BLL.pdb

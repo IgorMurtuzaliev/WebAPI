@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using SCore.BLL.Interfaces;
 using SCore.BLL.Models;
+using SCore.DAL.EF;
 using SCore.Models.Entities;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,11 @@ namespace SCore.BLL.Services
     public class RoleService:IRoleService
     {
         private RoleManager<ApplicationRole> _roleManager;
-        public RoleService(RoleManager<ApplicationRole> roleManager)
+        private ApplicationDbContext db;
+        public RoleService(RoleManager<ApplicationRole> roleManager, ApplicationDbContext _db)
         {
             _roleManager = roleManager;
+            db = _db;
         }
 
         public async Task<IdentityResult> Create(CreateRoleModel model)
@@ -61,6 +64,16 @@ namespace SCore.BLL.Services
         public async Task<ApplicationRole> GetRole(string id)
         {
             return await _roleManager.FindByIdAsync(id);
+        }
+
+        public bool RoleExists(string id)
+        {
+            return db.ApplicationRoles.Any(e => e.Id == id);
+        }
+
+        public async Task Save()
+        {
+            await db.SaveChangesAsync();
         }
     }
 

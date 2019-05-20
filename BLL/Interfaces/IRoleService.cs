@@ -14,5 +14,7 @@ namespace SCore.BLL.Interfaces
         Task Edit(string id);
         Task<IdentityResult> Delete(string id);
         Task<ApplicationRole> GetRole(string id);
+        Task Save();
+        bool RoleExists(string id);
     }
 }

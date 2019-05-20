@@ -17,12 +17,10 @@ namespace SCore.WebAPI.Controllers
     [ApiController]
     public class RolesController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
         private readonly IRoleService roleService;
 
-        public RolesController(ApplicationDbContext context, IRoleService _roleService)
+        public RolesController(IRoleService _roleService)
         {
-            _context = context;
             roleService = _roleService;
         }
 
@@ -56,7 +54,7 @@ namespace SCore.WebAPI.Controllers
             await roleService.Edit(role);
             try
             {
-                await _context.SaveChangesAsync();
+                await roleService.Save();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -78,7 +76,7 @@ namespace SCore.WebAPI.Controllers
         {
             var role = new CreateRoleModel { Name = model.Name };
             await roleService.Create(role);
-            await _context.SaveChangesAsync();
+            await roleService.Save();
 
             return CreatedAtAction("GetApplicationRole", new { id = model.Id }, role);
         }
@@ -94,14 +92,14 @@ namespace SCore.WebAPI.Controllers
             }
 
             await roleService.Delete(id);
-            await _context.SaveChangesAsync();
+            await roleService.Save();
 
             return applicationRole;
         }
 
         private bool ApplicationRoleExists(string id)
         {
-            return _context.ApplicationRoles.Any(e => e.Id == id);
+            return roleService.RoleExists(id);
         }
     }
 }

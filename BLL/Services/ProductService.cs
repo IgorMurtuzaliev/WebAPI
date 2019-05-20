@@ -11,6 +11,7 @@ using SCore.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SCore.BLL.Services
@@ -19,7 +20,7 @@ namespace SCore.BLL.Services
     {
         IUnitOfWork db { get; set; }
         private readonly IFileManager _fileManager;
-        private readonly ApplicationDbContext context;
+        private  ApplicationDbContext context;
         IHostingEnvironment _appEnvironment;
         public ProductService(IUnitOfWork _db, IFileManager fileManager, IConfiguration config, ApplicationDbContext _context, IHostingEnvironment appEnvironment)
         {
@@ -88,6 +89,14 @@ namespace SCore.BLL.Services
         public void Dispose(bool disposing)
         {
             db.Dispose(disposing);
+        }
+        public async Task Save()
+        {
+            await db.Products.Save();
+        }
+        public bool ProductExists(int id)
+        {
+            return context.Products.Any(e => e.ProductId == id);
         }
     }
 }
