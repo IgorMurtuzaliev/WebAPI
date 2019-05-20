@@ -16,6 +16,9 @@ namespace SCore.BLL.Interfaces
 
         IEnumerable<Order> Orders { get; }
         void SaveOrder(Order order);
+        Task Save();
+        bool OrderExists(int id);
+
 
     }
 }

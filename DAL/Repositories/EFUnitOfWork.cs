@@ -3,6 +3,7 @@ using SCore.DAL.Interfaces;
 using SCore.Models;
 using SCore.Models.Entities;
 using System;
+using System.Threading.Tasks;
 
 namespace SCore.DAL.Repositories
 {
@@ -66,9 +67,9 @@ namespace SCore.DAL.Repositories
                 return fileRepository;
             }
         }
-        public void Save()
+        public async Task Save()
         {
-            db.SaveChanges();
+            await db.SaveChangesAsync();
         }
 
         private bool disposed = false;

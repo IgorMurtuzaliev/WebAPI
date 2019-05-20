@@ -38,7 +38,6 @@ namespace SCore.BLL.Services
                 var encode = HttpUtility.UrlEncode(code);
                 var callbackurl = new StringBuilder("https://").AppendFormat(url).AppendFormat("/Account/ConfirmEmail").AppendFormat($"?userId={user.Id}&code={encode}");
                 await _emailSender.SendEmailAsync(user.Email, "Тема письма", $"Please confirm your account by <a href='{callbackurl}'>clicking here</a>.");
-                await _signInManager.SignInAsync(user, false);
                 await _userManager.AddToRoleAsync( user,"Admin");
             }
             return result;

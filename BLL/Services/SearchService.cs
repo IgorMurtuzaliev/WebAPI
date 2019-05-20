@@ -2,6 +2,7 @@
 using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MimeKit;
 using SCore.BLL.Interfaces;
 using SCore.DAL.EF;
@@ -27,45 +28,26 @@ namespace SCore.BLL.Services
             manager = _manager;
             orderService = _orderService;
         }
-        public List<Order> FindByDate(DateTime? from, DateTime? to)
-        {
-            return context.Orders.Where(c => c.TimeOfOrder > from && c.TimeOfOrder < to).ToList();
-        }
 
-        public List<Order> FindByUser(string search)
-        {
-            return context.Orders.Where(p => p.User.Name.Contains(search) || p.User.LastName.Contains(search) || p.User.UserName.Contains(search)).ToList();
-        }
-        public List<Order> FindByAll(string search, DateTime? from, DateTime? to)
-        {
-            return context.Orders.Where(p => p.User.Name.Contains(search) || p.User.LastName.Contains(search) || p.User.UserName.Contains(search)).Where(c => c.TimeOfOrder > from && c.TimeOfOrder < to).ToList();
-        }
-        public List<Order> GetAll()
-        {
-            return context.Orders.ToList();
-        }
-        public List<Order> Search(DateTime? from, DateTime? to, string search)
+        public async Task<IEnumerable<Order>> Search(DateTime? from, DateTime? to, string search)
         {
             if ((from != null || to != null) && search != null)
             {
-                var orders = FindByAll(search, from, to);
-                return orders;
+                return await context.Orders.Where(p => p.User.Name.Contains(search) || p.User.LastName.Contains(search) || p.User.UserName.Contains(search)).Where(c => c.TimeOfOrder > from && c.TimeOfOrder < to).ToListAsync();
             }
             if (from != null || to != null)
             {
-                var orders = FindByDate(from,to);
-                return orders;
+                return await context.Orders.Where(c => c.TimeOfOrder > from && c.TimeOfOrder < to).ToListAsync();
             }
             if (search != null)
             {
-                var orders = FindByUser(search);
-                return orders;
+                return await context.Orders.Where(p => p.User.Name.Contains(search) || p.User.LastName.Contains(search) || p.User.UserName.Contains(search)).ToListAsync();
             }
 
-            return GetAll();
+            return await context.Orders.ToListAsync();
         }
 
-        public XLWorkbook ExportToExcel(DateTime? from, DateTime? to, string search)
+        public async Task<XLWorkbook> ExportToExcel(DateTime? from, DateTime? to, string search)
         {
             DataTable dataTable = new DataTable("Grid");
 
@@ -76,7 +58,7 @@ namespace SCore.BLL.Services
                 new DataColumn("Order time"),
                  new DataColumn("Total"),
             });
-            var orders = Search(from, to, search);
+            var orders = await Search(from, to, search);
             foreach (var order in orders)
             {
                 dataTable.Rows.Add(order.User.UserName, order.OrderId, order.TimeOfOrder, order.Sum);
@@ -93,8 +75,8 @@ namespace SCore.BLL.Services
 
                 sheet.Cell(2, 1).Value = $"Report of orders by search: {search}";
             }
-            else if((from != null && to != null&& search!= null))
-             {
+            else if ((from != null && to != null && search != null))
+            {
                 sheet.Cell(2, 1).Value = $"Report of orders by search: {search} by date: with {from} to {to}";
             }
             else sheet.Cell(2, 1).Value = "Report of total orders";
@@ -104,7 +86,7 @@ namespace SCore.BLL.Services
         }
         public async Task SendByEmail(DateTime? from, DateTime? to, string search)
         {
-            var wb = ExportToExcel(from, to, search);
+            var wb = await ExportToExcel(from, to, search);
             MemoryStream memoryStream = new MemoryStream();
             wb.SaveAs(memoryStream);
             byte[] bytes = memoryStream.ToArray();

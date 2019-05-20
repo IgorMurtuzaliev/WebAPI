@@ -11,10 +11,8 @@ namespace SCore.BLL.Interfaces
 {
     public interface ISearchService
     {
-        List<Order> FindByDate(DateTime? from, DateTime? to);
-        List<Order> FindByUser(string search);
-        XLWorkbook ExportToExcel(DateTime? from, DateTime? to, string search);
-        List<Order> Search(DateTime? from, DateTime? to, string search);
+        Task<IEnumerable<Order>> Search(DateTime? from, DateTime? to, string search);
         Task SendByEmail(DateTime? from, DateTime? to, string search);
+        Task<XLWorkbook> ExportToExcel(DateTime? from, DateTime? to, string search);
     }
 }

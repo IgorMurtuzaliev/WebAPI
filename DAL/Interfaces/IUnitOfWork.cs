@@ -1,5 +1,6 @@
 ﻿using SCore.Models;
 using SCore.Models.Entities;
+using System.Threading.Tasks;
 
 namespace SCore.DAL.Interfaces
 {
@@ -9,7 +10,7 @@ namespace SCore.DAL.Interfaces
         IRepository<Product> Products { get; }
         IRepository<Order> Orders { get; }
         IRepository<FileModel> Files { get; }
-        void Save();
+        Task Save();
         void Dispose(bool disposing);
     }
 }

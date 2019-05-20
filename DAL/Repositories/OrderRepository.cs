@@ -65,7 +65,7 @@ namespace SCore.DAL.Repositories
 
         public async Task<IEnumerable<Order>> GetAll()
         {
-            return await db.Orders.Include(c=>c.User).ToListAsync();
+            return await db.Orders.ToListAsync();
         }
 
         public async Task Save()

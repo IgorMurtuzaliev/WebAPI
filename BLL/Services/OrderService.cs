@@ -39,9 +39,9 @@ namespace SCore.BLL.Services
             };
             order.ProductOrders.Add(orderproduct);
             Product product = await db.Products.Get(orderproduct.ProductId);
-            order.Sum += product.ProductId * orderproduct.Amount;
+            order.Sum += product.Price * orderproduct.Amount;
             await db.Orders.Create(order);
-             db.Save();
+             await db.Save();
 
         }
 
@@ -51,7 +51,7 @@ namespace SCore.BLL.Services
         }
         public async Task<IEnumerable<Order>> GetAll()
         {
-            return  await db.Orders.GetAll();
+            return await db.Orders.GetAll();
         }
 
         public async Task Edit(Order order)
@@ -81,9 +81,16 @@ namespace SCore.BLL.Services
             {
                 db.Orders.Create(order);
                 db.Save();
-            }
-            
+            }           
+        }
+        public async Task Save()
+        {
+            await db.Save();
         }
 
+        public bool OrderExists(int id)
+        {
+            return context.Orders.Any(c => c.OrderId == id);
+        }
     }
 }

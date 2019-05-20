@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace SCore.Models
-{
+{   [Serializable]
     public class Order
     {
         public Order()
@@ -20,8 +21,10 @@ namespace SCore.Models
 
         [Display(Name = "Total")]
         public int Sum { get; set; }
-
+         
+        [JsonIgnore]
         public virtual User User { get; set; }
+        [JsonIgnore]
         public virtual ICollection<ProductOrder> ProductOrders { get; set; }
     }
 }
