@@ -55,7 +55,8 @@ namespace SCore.BLL.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                                {
-                        new Claim("Id", user.Id.ToString())
+                        new Claim("Id", user.Id.ToString()),
+                        new Claim("UserName", user.UserName),
                                }),
                 Expires = DateTime.UtcNow.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
                 SigningCredentials = new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256),
