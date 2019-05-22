@@ -22,7 +22,8 @@
           "Microsoft.IdentityModel.Tokens": "5.4.0",
           "MimeKit": "2.1.5.1",
           "SCore.DAL": "1.0.0",
-          "SCore.Models": "1.0.0"
+          "SCore.Models": "1.0.0",
+          "System.IdentityModel.Tokens.Jwt": "5.3.0.0"
         },
         "runtime": {
           "SCore.BLL.dll": {}
@@ -2579,6 +2580,14 @@
         "runtime": {
           "SCore.Models.dll": {}
         }
+      },
+      "System.IdentityModel.Tokens.Jwt/5.3.0.0": {
+        "runtime": {
+          "System.IdentityModel.Tokens.Jwt.dll": {
+            "assemblyVersion": "5.3.0.0",
+            "fileVersion": "5.3.0.51005"
+          }
+        }
       }
     }
   },
@@ -4093,6 +4102,11 @@
     },
     "SCore.Models/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "System.IdentityModel.Tokens.Jwt/5.3.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

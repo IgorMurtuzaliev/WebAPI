@@ -87,6 +87,7 @@ namespace SCore.WebAPI
                    .AddJwtBearer(options =>
                    {
                        options.RequireHttpsMetadata = false;
+                       options.SaveToken = false;
                        options.TokenValidationParameters = new TokenValidationParameters
                        {
                             ValidateIssuer = true,

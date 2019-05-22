@@ -26,3 +26,6 @@ c:\Users\ingwa\source\repos\WebAPI\BLL\obj\Debug\netcoreapp2.2\SCore.BLL.Assembl
 c:\Users\ingwa\source\repos\WebAPI\BLL\obj\Debug\netcoreapp2.2\SCore.BLL.csproj.CopyComplete
 c:\Users\ingwa\source\repos\WebAPI\BLL\obj\Debug\netcoreapp2.2\SCore.BLL.dll
 c:\Users\ingwa\source\repos\WebAPI\BLL\obj\Debug\netcoreapp2.2\SCore.BLL.pdb
+C:\Users\User\source\repos\SCore.WebAPI\BLL\bin\Debug\netcoreapp2.2\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\User\source\repos\SCore.WebAPI\BLL\bin\Debug\netcoreapp2.2\System.IdentityModel.Tokens.Jwt.pdb
+C:\Users\User\source\repos\SCore.WebAPI\BLL\bin\Debug\netcoreapp2.2\System.IdentityModel.Tokens.Jwt.xml
