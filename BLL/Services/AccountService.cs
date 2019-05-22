@@ -7,6 +7,7 @@ using SCore.BLL.Models;
 using SCore.Models;
 using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,7 +42,7 @@ namespace SCore.BLL.Services
             {
                 string code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 var encode = HttpUtility.UrlEncode(code);
-                var callbackurl = new StringBuilder("https://").AppendFormat(url).AppendFormat("/Account/ConfirmEmail").AppendFormat($"?userId={user.Id}&code={encode}");
+                var callbackurl = new StringBuilder("https://").AppendFormat(url).AppendFormat("/api/account/confirmemail").AppendFormat($"?userId={user.Id}&code={encode}");
                 await _emailSender.SendEmailAsync(user.Email, "Тема письма", $"Please confirm your account by <a href='{callbackurl}'>clicking here</a>.");
                 await _userManager.AddToRoleAsync( user,"User");
             }
@@ -50,13 +51,15 @@ namespace SCore.BLL.Services
     
         public  async Task<object> LogIn(LoginModel model)
         {
+            IdentityOptions _options = new IdentityOptions();
             var user = await _userManager.FindByEmailAsync(model.Email);
+            var role = await _userManager.GetRolesAsync(user);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
                                {
                         new Claim("Id", user.Id.ToString()),
-                        new Claim("UserName", user.UserName),
+                        new Claim(_options.ClaimsIdentity.RoleClaimType,role.FirstOrDefault())
                                }),
                 Expires = DateTime.UtcNow.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
                 SigningCredentials = new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256),

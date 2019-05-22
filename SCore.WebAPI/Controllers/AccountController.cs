@@ -62,6 +62,20 @@ namespace SCore.WebAPI.Controllers
             return Ok(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> ConfirmEmail(string userId, string code)
+        {
+            if (userId == null || code == null)
+            {
+                return NotFound();
+            }
+            IdentityResult result = await service.ConfirmEmail(userId, code);
+            if (result.Succeeded)
+                return RedirectToAction("GetProducts", "Products");
+            else
+                return NotFound();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Login([FromForm]LoginViewModel model)
         {
