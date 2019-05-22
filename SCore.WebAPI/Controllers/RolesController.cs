@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -25,24 +26,27 @@ namespace SCore.WebAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult<IEnumerable<ApplicationRole>> GetRoles()
         {
             return Ok(roleService.GetAll());
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<ApplicationRole>> GetRole(string id)
         {
             var applicationRole =  await roleService.GetRole(id);
 
             if (applicationRole == null)
             {
-                return NotFound();
+                return NotFound("Role's not found");
             }
             return applicationRole;
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> EditRole(string id, RoleViewModelEdit model)
         {
             var role = new EditRoleModel { Name = model.Name, Id = model.Id };
@@ -60,7 +64,7 @@ namespace SCore.WebAPI.Controllers
             {
                 if (!ApplicationRoleExists(id))
                 {
-                    return NotFound();
+                    return NotFound("Role's not found");
                 }
                 else
                 {
@@ -72,6 +76,7 @@ namespace SCore.WebAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<ApplicationRole>> CreateRole(RoleViewModel model)
         {
             var role = new CreateRoleModel { Name = model.Name };
@@ -81,14 +86,14 @@ namespace SCore.WebAPI.Controllers
             return CreatedAtAction("GetApplicationRole", new { id = model.Id }, role);
         }
 
-        // DELETE: api/ApplicationRoles/5
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<ActionResult<ApplicationRole>> DeleteRole(string id)
         {
             var applicationRole = await roleService.GetRole(id);
             if (applicationRole == null)
             {
-                return NotFound();
+                return NotFound("Role's not found");
             }
 
             await roleService.Delete(id);

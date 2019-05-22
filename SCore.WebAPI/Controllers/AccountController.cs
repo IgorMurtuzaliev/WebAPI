@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -60,59 +61,35 @@ namespace SCore.WebAPI.Controllers
             }
             return Ok(model);
         }
-        public ClaimsIdentity GetIdentity(string username, string password)
-        {
-            var user = db.Users.FirstOrDefault(x => x.Email == username && x.PasswordHash == password);
-            if (user != null)
-            {
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, user.UserName),
-                    //new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role)
-                };
-                ClaimsIdentity claimsIdentity =
-                new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
-                    ClaimsIdentity.DefaultRoleClaimType);
-                return claimsIdentity;
-            }
 
-            // если пользователя не найдено
-            return null;
-        }
         [HttpPost]
-        public async Task Token()
+        public async Task<IActionResult> Login([FromForm]LoginViewModel model)
         {
-            var username = Request.Form["username"];
-            var password = Request.Form["password"];
-
-            var identity = GetIdentity(username, password);
-            if (identity == null)
+    
+            var user = await userManager.FindByEmailAsync(model.Email);
+            if (user != null && await userManager.CheckPasswordAsync(user, model.Password))
             {
-                Response.StatusCode = 400;
-                await Response.WriteAsync("Invalid username or password.");
-                return;
+                var userModel = new LoginModel
+                {
+                    Email = model.Email,
+                    Password = model.Password
+
+                };
+               var token =  await service.LogIn(userModel);
+                return Ok(new { token });
+            }               
+           else return BadRequest(new { message = "Username or password is incorrect" });
+        }
+        [HttpGet]
+        public async Task<ActionResult<string>> GetUsersAccount(string id)
+        {
+            if (id == null)
+            {
+                return BadRequest();
             }
-
-            var now = DateTime.UtcNow;
-            // создаем JWT-токен
-            var jwt = new JwtSecurityToken(
-                    issuer: AuthOptions.ISSUER,
-                    audience: AuthOptions.AUDIENCE,
-                    notBefore: now,
-                    claims: identity.Claims,
-                    expires: now.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
-                    signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
-            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-
-            var response = new
-            {
-                access_token = encodedJwt,
-                username = identity.Name
-            };
-
-            // сериализация ответа
-            Response.ContentType = "application/json";
-            await Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
+            User user = await userService.Get(id);
+            var role = await userManager.GetRolesAsync(user);
+            return role.First();
         }
     }
 }

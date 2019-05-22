@@ -26,7 +26,7 @@ namespace SCore.WebAPI.Controllers
             productService = _productService;
             _context = context;
         }
-        [Authorize]
+        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
@@ -39,11 +39,12 @@ namespace SCore.WebAPI.Controllers
             var product = await productService.Get(id); ;
             if (product == null)
             {
-                return NotFound();
+                return NotFound("Products's not found");
             }
             return product;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> EditProduct(int id, [FromForm]ProductViewModel model)
         {
@@ -71,7 +72,7 @@ namespace SCore.WebAPI.Controllers
             {
                 if (!ProductExists(id))
                 {
-                    return NotFound();
+                    return NotFound("Products's not found");
                 }
                 else
                 {
@@ -81,6 +82,7 @@ namespace SCore.WebAPI.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult<Product>> AddProduct([FromForm]ProductViewModel model)
         {
@@ -97,13 +99,14 @@ namespace SCore.WebAPI.Controllers
             return CreatedAtAction("GetProduct", new { id = product.ProductId }, product);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<ActionResult<Product>> DeleteProduct(int id)
         {
             var product = await productService.Get(id);
             if (product == null)
             {
-                return NotFound();
+                return NotFound("Products's not found");
             }
             await productService.Delete(id);
 

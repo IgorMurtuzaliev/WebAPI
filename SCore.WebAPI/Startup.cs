@@ -87,6 +87,7 @@ namespace SCore.WebAPI
                    .AddJwtBearer(options =>
                    {
                        options.RequireHttpsMetadata = false;
+                       options.SaveToken = false;
                        options.TokenValidationParameters = new TokenValidationParameters
                        {
                             ValidateIssuer = true,
@@ -96,11 +97,17 @@ namespace SCore.WebAPI
                             ValidateLifetime = true,
                             IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
                             ValidateIssuerSigningKey = true,
+                           ClockSkew = TimeSpan.Zero
+
+
                        };
                    });
 
             services.AddMemoryCache();
-            services.AddSession();
+            services.AddSession(opts =>
+            {
+                opts.Cookie.IsEssential = true; // make the session cookie Essential
+            });
 
         }
 
@@ -125,7 +132,7 @@ namespace SCore.WebAPI
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Products}/{action=Index}/{id?}");
             });
 
         }

@@ -1,8 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.IdentityModel.Tokens;
+using SCore.BLL.Infrastructure;
 using SCore.BLL.Interfaces;
 using SCore.BLL.Models;
 using SCore.Models;
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -43,11 +48,24 @@ namespace SCore.BLL.Services
             return result;
         }
     
-        public async Task<SignInResult> LogIn(LoginModel model)
+        public  async Task<object> LogIn(LoginModel model)
         {
-            SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, true, false);
-            return result;
-
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                               {
+                        new Claim("Id", user.Id.ToString())
+                               }),
+                Expires = DateTime.UtcNow.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
+                SigningCredentials = new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256),
+                Audience = AuthOptions.AUDIENCE,
+                Issuer = AuthOptions.ISSUER
+            };
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+            var token = tokenHandler.WriteToken(securityToken);
+            return token;
         }
         public async Task<IdentityResult> ConfirmEmail(string userId, string code)
         {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +28,7 @@ namespace SCore.WebAPI.Controllers
             userManager = _userManager;
         }
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<IEnumerable<Product>>> GetUsers()
         {
             return Ok(await userService.GetAll());
@@ -38,7 +40,7 @@ namespace SCore.WebAPI.Controllers
             User user = await userService.Get(id); ;
             if (user == null)
             {
-                return NotFound();
+                return NotFound("User's not found");
             }
             return user;
         }
@@ -70,7 +72,7 @@ namespace SCore.WebAPI.Controllers
             {
                 if (!UserExists(id))
                 {
-                    return NotFound();
+                    return NotFound("User's not found");
                 }
                 else
                 {
@@ -81,6 +83,7 @@ namespace SCore.WebAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<User>> AddUser([FromForm]UserViewModel model)
         {
             var user = new UserModel
@@ -96,12 +99,13 @@ namespace SCore.WebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<User>> DeleteUser(string id)
         {
             var user = await userService.Get(id);
             if (user == null)
             {
-                return NotFound();
+                return NotFound("User's not found");
             }
             await userService.Delete(id);
 

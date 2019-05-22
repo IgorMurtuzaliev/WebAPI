@@ -15,7 +15,7 @@ namespace SCore.BLL.Interfaces
         void Dispose(bool disposing);
 
         IEnumerable<Order> Orders { get; }
-        void SaveOrder(Order order);
+        Task SaveOrder(Order order);
         Task Save();
         bool OrderExists(int id);
 

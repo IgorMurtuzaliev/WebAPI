@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SCore.BLL.Interfaces;
@@ -18,30 +20,36 @@ namespace SCore.WebAPI.Controllers
     public class OrdersController : ControllerBase
     {
         private readonly IOrderService service;
-
-        public OrdersController(IOrderService _service)
+        private Cart cart;
+        private UserManager<User> userManager;
+        public OrdersController(IOrderService _service, Cart _cart, UserManager<User> _userManager)
         {
             service = _service;
+            cart = _cart;
+            userManager = _userManager;
         }
 
         [HttpGet]
+        [Authorize(Roles = "User")]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
             return Ok(await service.GetAll());
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "User")]
         public async Task<ActionResult<Order>> GetOrder(int id)
         {
             var order = await service.Get(id);
             if (order == null)
             {
-                return NotFound();
+                return NotFound("Order not found");
             }
             return order;
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> EditOrder(int id, [FromForm]Order order)
         {
             if (id != order.OrderId)
@@ -57,7 +65,7 @@ namespace SCore.WebAPI.Controllers
             {
                 if (!OrderExists(id))
                 {
-                    return NotFound();
+                    return NotFound("Order not found");
                 }
                 else
                 {
@@ -68,6 +76,7 @@ namespace SCore.WebAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "User")]
         public async Task<ActionResult<Order>> CreateOrder([FromForm]OrderViewModel model)
         {
             var order = new OrderModel
@@ -84,22 +93,55 @@ namespace SCore.WebAPI.Controllers
             return CreatedAtAction("GetOrder", new { id = order.OrderId }, order);
         }
 
-        // DELETE: api/Orders/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "User")]
         public async Task<ActionResult<Order>> DeleteOrder(int id)
         {
             var order = await service.Get(id);
             if (order == null)
             {
-                return NotFound();
+                return NotFound("Order not found");
             }
             await service.Delete(id);
             return order;
         }
 
+        [Authorize(Roles = "User")]
         private bool OrderExists(int id)
         {
             return service.OrderExists(id);
         }
+        [Authorize]
+        public async Task<IActionResult> Checkout([FromForm]Order order)
+        {          
+            if (cart.Lines.Count() == 0)
+            {
+                ModelState.AddModelError("", "Sorry, your cart is empty!");
+            }
+            if (ModelState.IsValid)
+            {
+                var id = userManager.GetUserId(HttpContext.User);
+                order.UserId = id;
+                order.User = await userManager.FindByIdAsync(id);
+                order.ProductOrders = cart.Lines.ToArray();
+                order.Sum = 0;
+                foreach (var line in cart.Lines)
+                {
+                    order.Sum += line.Product.Price * line.Amount;
+                }
+                await service.SaveOrder(order);
+                return RedirectToAction(nameof(Completed));
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+        public IActionResult Completed()
+        {
+            cart.Clear();
+            return Ok(cart);
+        }
+
     }
 }
