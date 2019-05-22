@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -32,12 +33,16 @@ namespace SCore.WebAPI.Controllers
             fileManager = _fileManager;
             _appEnvironment = appEnvironment;
         }
+
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrders(DateTime? from,DateTime? to, string search)
         {
             var orders = await service.Search(from, to, search);
             return Ok(orders);
         }
+
+        [Authorize(Roles = "Admin")]
         public async Task<FileResult> ExportToExcel(DateTime? from, DateTime? to, string search)
         {
             using (MemoryStream stream = new MemoryStream())
@@ -48,6 +53,7 @@ namespace SCore.WebAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> SendEmail(DateTime? from, DateTime? to, string search)
         {
             await service.SendByEmail(from, to, search);

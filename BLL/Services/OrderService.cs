@@ -74,13 +74,13 @@ namespace SCore.BLL.Services
                             .Include(o => o.ProductOrders)
                             .ThenInclude(l => l.Product);
 
-        public void SaveOrder(Order order)
+        public async Task SaveOrder(Order order)
         {
             context.AttachRange(order.ProductOrders.Select(l => l.Product));
             if (order.OrderId == 0)
             {
-                db.Orders.Create(order);
-                db.Save();
+                await db.Orders.Create(order);
+                await db.Save();
             }           
         }
         public async Task Save()

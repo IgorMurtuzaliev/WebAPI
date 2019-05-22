@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SCore.BLL.Infrastructure;
@@ -23,6 +24,7 @@ namespace SCore.WebAPI.Controllers
             productService = _productService;
         }
         [HttpGet]
+        //[Authorize(Roles = "User")]
         public ActionResult ShowCart()
         {
             var cart = new CartIndexViewModel
@@ -30,10 +32,11 @@ namespace SCore.WebAPI.Controllers
                 Cart = GetCart(),
                 
             };
-            return Ok(cart.Cart.Lines.ToList());
+            return Ok(cart);
         }
+        //[Authorize(Roles = "User")]
         [HttpPost]
-        public async Task<IActionResult> AddToCart([FromForm]int productId)
+        public async Task<ActionResult<Cart>> AddToCart([FromForm]int productId)
         {
             var product = await productService.Get(productId);
             if (product != null)
@@ -41,11 +44,13 @@ namespace SCore.WebAPI.Controllers
                 Cart cart = GetCart();
                 cart.AddItem(product, 1);
                 SaveCart(cart);
+                return Ok(cart);
             }
-            return Ok(product);
+            return NotFound();
         }
-      
-        public async Task<IActionResult> RemoveFromCart(int productId)
+
+        //[Authorize(Roles = "User")]
+        public async Task<ActionResult<Cart>> RemoveFromCart([FromForm]int productId)
         {
             Product product = await productService.Get(productId);
             if (product != null)
@@ -53,17 +58,23 @@ namespace SCore.WebAPI.Controllers
                 Cart cart = GetCart();
                 cart.RemoveLine(product);
                 SaveCart(cart);
+                return Ok(cart);
             }
-            return Ok(product);
+            return NotFound();
         }
+
+        //[Authorize(Roles = "User")]
         private Cart GetCart()
         {
             Cart cart = HttpContext.Session.GetJson<Cart>("Cart") ?? new Cart();
             return cart;
         }
+
+       // [Authorize(Roles = "User")]
         private void SaveCart(Cart cart)
         {
             HttpContext.Session.SetJson("Cart", cart);
         }
+
     }
 }

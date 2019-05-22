@@ -81,12 +81,15 @@ namespace SCore.WebAPI.Controllers
            else return BadRequest(new { message = "Username or password is incorrect" });
         }
         [HttpGet]
-        [Authorize]
-        public async Task<object> GetUserName()
+        public async Task<ActionResult<string>> GetUsersAccount(string id)
         {
-            string userId = User.Claims.First(c => c.Type == "Id").Value;
-            var user = userManager.FindByIdAsync(userId);
-            return Ok(await user);
+            if (id == null)
+            {
+                return BadRequest();
+            }
+            User user = await userService.Get(id);
+            var role = await userManager.GetRolesAsync(user);
+            return role.First();
         }
     }
 }
