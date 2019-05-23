@@ -102,13 +102,12 @@ namespace SCore.WebAPI
 
                        };
                    });
-
             services.AddMemoryCache();
             services.AddSession(opts =>
             {
                 opts.Cookie.IsEssential = true; // make the session cookie Essential
             });
-
+           
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -122,6 +121,7 @@ namespace SCore.WebAPI
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+            loggerFactory.AddLog4Net();
             app.UseCors("fully permissive");
             app.UseSession();
             app.UseHttpsRedirection();
@@ -134,7 +134,6 @@ namespace SCore.WebAPI
                     name: "default",
                     template: "{controller=Products}/{action=Index}/{id?}");
             });
-
         }
     }
 }
