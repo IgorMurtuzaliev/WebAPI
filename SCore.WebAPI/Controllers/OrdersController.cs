@@ -31,14 +31,14 @@ namespace SCore.WebAPI.Controllers
 
         [HttpGet]
         [Authorize(Roles = "User")]
-        public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
+        public async Task<ActionResult<IEnumerable<Order>>> OrdersList()
         {
             return Ok(await service.GetAll());
         }
 
         [HttpGet("{id}")]
         [Authorize(Roles = "User")]
-        public async Task<ActionResult<Order>> GetOrder(int id)
+        public async Task<ActionResult<Order>> Order(int id)
         {
             var order = await service.Get(id);
             if (order == null)
@@ -50,7 +50,7 @@ namespace SCore.WebAPI.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "User")]
-        public async Task<IActionResult> EditOrder(int id, [FromForm]Order order)
+        public async Task<IActionResult> EditingOrder(int id, [FromForm]Order order)
         {
             if (id != order.OrderId)
             {
@@ -77,7 +77,7 @@ namespace SCore.WebAPI.Controllers
 
         [HttpPost]
         [Authorize(Roles = "User")]
-        public async Task<ActionResult<Order>> CreateOrder([FromForm]OrderViewModel model)
+        public async Task<ActionResult<Order>> CreatingOrder([FromForm]OrderViewModel model)
         {
             var order = new OrderModel
             {
@@ -95,7 +95,7 @@ namespace SCore.WebAPI.Controllers
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "User")]
-        public async Task<ActionResult<Order>> DeleteOrder(int id)
+        public async Task<ActionResult<Order>> DeletingOrder(int id)
         {
             var order = await service.Get(id);
             if (order == null)

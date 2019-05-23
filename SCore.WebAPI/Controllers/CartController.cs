@@ -25,7 +25,7 @@ namespace SCore.WebAPI.Controllers
         }
         [HttpGet]
         //[Authorize(Roles = "User")]
-        public ActionResult ShowCart()
+        public ActionResult CartReport()
         {
             var cart = new CartIndexViewModel
             {
@@ -36,7 +36,7 @@ namespace SCore.WebAPI.Controllers
         }
         //[Authorize(Roles = "User")]
         [HttpPost]
-        public async Task<ActionResult<Cart>> AddToCart([FromForm]int productId)
+        public async Task<ActionResult<Cart>> AddingToCart([FromForm]int productId)
         {
             var product = await productService.Get(productId);
             if (product != null)
@@ -50,7 +50,7 @@ namespace SCore.WebAPI.Controllers
         }
 
         //[Authorize(Roles = "User")]
-        public async Task<ActionResult<Cart>> RemoveFromCart([FromForm]int productId)
+        public async Task<ActionResult<Cart>> RemovingFromCart([FromForm]int productId)
         {
             Product product = await productService.Get(productId);
             if (product != null)

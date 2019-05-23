@@ -28,13 +28,13 @@ namespace SCore.WebAPI.Controllers
         }
         
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<Product>>> ProductsList()
         {
             return Ok(await productService.GetAll());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public async Task<ActionResult<Product>> Product(int id)
         {
             var product = await productService.Get(id); ;
             if (product == null)
@@ -46,7 +46,7 @@ namespace SCore.WebAPI.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditProduct(int id, [FromForm]ProductViewModel model)
+        public async Task<IActionResult> EditingProduct(int id, [FromForm]ProductViewModel model)
         {
             var product = new ProductModel
             {
@@ -84,7 +84,7 @@ namespace SCore.WebAPI.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public async Task<ActionResult<Product>> AddProduct([FromForm]ProductViewModel model)
+        public async Task<ActionResult<Product>> AddingProduct([FromForm]ProductViewModel model)
         {
             var product = new ProductModel
             {
@@ -120,7 +120,7 @@ namespace SCore.WebAPI.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Product>> DeleteProduct(int id)
+        public async Task<ActionResult<Product>> DeletingProduct(int id)
         {
             var product = await productService.Get(id);
             if (product == null)

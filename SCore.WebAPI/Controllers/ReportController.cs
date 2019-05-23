@@ -36,14 +36,14 @@ namespace SCore.WebAPI.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> GetOrders(DateTime? from,DateTime? to, string search)
+        public async Task<ActionResult<IEnumerable<Order>>> Report(DateTime? from,DateTime? to, string search)
         {
             var orders = await service.Search(from, to, search);
             return Ok(orders);
         }
 
         [Authorize(Roles = "Admin")]
-        public async Task<FileResult> ExportToExcel(DateTime? from, DateTime? to, string search)
+        public async Task<FileResult> ExportingToExcel(DateTime? from, DateTime? to, string search)
         {
             using (MemoryStream stream = new MemoryStream())
             {
@@ -54,7 +54,7 @@ namespace SCore.WebAPI.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> SendEmail(DateTime? from, DateTime? to, string search)
+        public async Task<IActionResult> SendingEmail(DateTime? from, DateTime? to, string search)
         {
             await service.SendByEmail(from, to, search);
             return RedirectToAction("FindData", "Home");

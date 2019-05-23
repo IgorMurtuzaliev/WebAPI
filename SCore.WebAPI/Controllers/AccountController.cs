@@ -96,7 +96,7 @@ namespace SCore.WebAPI.Controllers
         }
         [Authorize]
         [HttpGet]
-        public async Task<IActionResult> GetUsersAccount()
+        public async Task<IActionResult> UsersAccount()
         {
             var id = User.Claims.First(c => c.Type == "Id").Value;
             User user = await userManager.FindByIdAsync(id);

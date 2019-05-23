@@ -27,14 +27,14 @@ namespace SCore.WebAPI.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Admin")]
-        public ActionResult<IEnumerable<ApplicationRole>> GetRoles()
+        public ActionResult<IEnumerable<ApplicationRole>> RolesList()
         {
             return Ok(roleService.GetAll());
         }
 
         [HttpGet("{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult<ApplicationRole>> GetRole(string id)
+        public async Task<ActionResult<ApplicationRole>> Role(string id)
         {
             var applicationRole =  await roleService.GetRole(id);
 
@@ -47,7 +47,7 @@ namespace SCore.WebAPI.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> EditRole(string id, RoleViewModelEdit model)
+        public async Task<IActionResult> EditingRole(string id, RoleViewModelEdit model)
         {
             var role = new EditRoleModel { Name = model.Name, Id = model.Id };
             if (id != role.Id)
@@ -77,7 +77,7 @@ namespace SCore.WebAPI.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult<ApplicationRole>> CreateRole(RoleViewModel model)
+        public async Task<ActionResult<ApplicationRole>> CreatingRole(RoleViewModel model)
         {
             var role = new CreateRoleModel { Name = model.Name };
             await roleService.Create(role);
@@ -88,7 +88,7 @@ namespace SCore.WebAPI.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ApplicationRole>> DeleteRole(string id)
+        public async Task<ActionResult<ApplicationRole>> DeletingRole(string id)
         {
             var applicationRole = await roleService.GetRole(id);
             if (applicationRole == null)

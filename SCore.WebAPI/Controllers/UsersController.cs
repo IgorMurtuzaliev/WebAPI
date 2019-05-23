@@ -29,13 +29,13 @@ namespace SCore.WebAPI.Controllers
         }
         [HttpGet]
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<Product>>> Userslist()
         {
             return Ok(await userService.GetAll());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(string id)
+        public async Task<ActionResult<User>> User(string id)
         {
             User user = await userService.Get(id); ;
             if (user == null)
@@ -46,7 +46,7 @@ namespace SCore.WebAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditUser(string id, [FromForm]UserViewModel model)
+        public async Task<IActionResult> EditingUser(string id, [FromForm]UserViewModel model)
         {
             var user = new UserModel
             {
@@ -84,7 +84,7 @@ namespace SCore.WebAPI.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult<User>> AddUser([FromForm]UserViewModel model)
+        public async Task<ActionResult<User>> AddingUser([FromForm]UserViewModel model)
         {
             var user = new UserModel
             {
@@ -100,7 +100,7 @@ namespace SCore.WebAPI.Controllers
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult<User>> DeleteUser(string id)
+        public async Task<ActionResult<User>> DeletingUser(string id)
         {
             var user = await userService.Get(id);
             if (user == null)
@@ -115,6 +115,18 @@ namespace SCore.WebAPI.Controllers
         private bool UserExists(string id)
         {
             return userService.UserExists(id);
+        }
+
+        [HttpPut]
+        public async Task UserToManager([FromForm]string id)
+        {
+            await userService.UserToManager(id);
+        }
+
+        [HttpPut]
+        public async Task ManagerToUser([FromForm]string id)
+        {
+            await userService.ManagerToUser(id);
         }
     }
 }

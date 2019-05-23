@@ -14,6 +14,8 @@ namespace SCore.BLL.Interfaces
         Task Delete(string id);
         void Dispose(bool disposing);
         Task Save();
+        Task UserToManager(string id);
+        Task ManagerToUser(string id);
         bool UserExists(string id);
     }
 }
