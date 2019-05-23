@@ -34,7 +34,7 @@ namespace SCore.WebAPI.Controllers
             _appEnvironment = appEnvironment;
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Manager")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Order>>> Report(DateTime? from,DateTime? to, string search)
         {
@@ -42,7 +42,7 @@ namespace SCore.WebAPI.Controllers
             return Ok(orders);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<FileResult> ExportingToExcel(DateTime? from, DateTime? to, string search)
         {
             using (MemoryStream stream = new MemoryStream())
@@ -53,7 +53,7 @@ namespace SCore.WebAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> SendingEmail(DateTime? from, DateTime? to, string search)
         {
             await service.SendByEmail(from, to, search);

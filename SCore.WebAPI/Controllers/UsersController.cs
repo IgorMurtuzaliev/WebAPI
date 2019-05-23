@@ -117,14 +117,16 @@ namespace SCore.WebAPI.Controllers
             return userService.UserExists(id);
         }
 
-        [HttpPut]
-        public async Task UserToManager([FromForm]string id)
+        [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
+        public async Task UserToManager(string id)
         {
             await userService.UserToManager(id);
         }
 
-        [HttpPut]
-        public async Task ManagerToUser([FromForm]string id)
+        [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
+        public async Task ManagerToUser(string id)
         {
             await userService.ManagerToUser(id);
         }

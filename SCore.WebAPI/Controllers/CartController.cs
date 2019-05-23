@@ -24,7 +24,7 @@ namespace SCore.WebAPI.Controllers
             productService = _productService;
         }
         [HttpGet]
-        //[Authorize(Roles = "User")]
+        [Authorize(Roles = "User")]
         public ActionResult CartReport()
         {
             var cart = new CartIndexViewModel
@@ -34,11 +34,11 @@ namespace SCore.WebAPI.Controllers
             };
             return Ok(cart);
         }
-        //[Authorize(Roles = "User")]
+        [Authorize(Roles = "User")]
         [HttpPost]
-        public async Task<ActionResult<Cart>> AddingToCart([FromForm]int productId)
+        public async Task<ActionResult<Cart>> AddingToCart([FromForm]int id)
         {
-            var product = await productService.Get(productId);
+            var product = await productService.Get(id);
             if (product != null)
             {
                 Cart cart = GetCart();
@@ -49,10 +49,10 @@ namespace SCore.WebAPI.Controllers
             return NotFound();
         }
 
-        //[Authorize(Roles = "User")]
-        public async Task<ActionResult<Cart>> RemovingFromCart([FromForm]int productId)
+        [Authorize(Roles = "User")]
+        public async Task<ActionResult<Cart>> RemovingFromCart([FromForm]int id)
         {
-            Product product = await productService.Get(productId);
+            Product product = await productService.Get(id);
             if (product != null)
             {
                 Cart cart = GetCart();
@@ -63,14 +63,14 @@ namespace SCore.WebAPI.Controllers
             return NotFound();
         }
 
-        //[Authorize(Roles = "User")]
+        [Authorize(Roles = "User")]
         private Cart GetCart()
         {
             Cart cart = HttpContext.Session.GetJson<Cart>("Cart") ?? new Cart();
             return cart;
         }
 
-       // [Authorize(Roles = "User")]
+        [Authorize(Roles = "User")]
         private void SaveCart(Cart cart)
         {
             HttpContext.Session.SetJson("Cart", cart);

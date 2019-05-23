@@ -44,7 +44,7 @@ namespace SCore.WebAPI.Controllers
             return product;
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Manager")]
         [HttpPut("{id}")]
         public async Task<IActionResult> EditingProduct(int id, [FromForm]ProductViewModel model)
         {
