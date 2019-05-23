@@ -1,8 +1,14 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.IdentityModel.Tokens;
+using SCore.BLL.Infrastructure;
 using SCore.BLL.Interfaces;
 using SCore.BLL.Models;
 using SCore.Models;
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -36,18 +42,34 @@ namespace SCore.BLL.Services
             {
                 string code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 var encode = HttpUtility.UrlEncode(code);
-                var callbackurl = new StringBuilder("https://").AppendFormat(url).AppendFormat("/Account/ConfirmEmail").AppendFormat($"?userId={user.Id}&code={encode}");
+                var callbackurl = new StringBuilder("https://").AppendFormat(url).AppendFormat("/api/account/confirmemail").AppendFormat($"?userId={user.Id}&code={encode}");
                 await _emailSender.SendEmailAsync(user.Email, "Тема письма", $"Please confirm your account by <a href='{callbackurl}'>clicking here</a>.");
-                await _userManager.AddToRoleAsync( user,"Admin");
+                await _userManager.AddToRoleAsync( user,"User");
             }
             return result;
         }
     
-        public async Task<SignInResult> LogIn(LoginModel model)
+        public  async Task<object> LogIn(LoginModel model)
         {
-            SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, true, false);
-            return result;
-
+            IdentityOptions _options = new IdentityOptions();
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            var role = await _userManager.GetRolesAsync(user);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                               {
+                        new Claim("Id", user.Id.ToString()),
+                        new Claim(_options.ClaimsIdentity.RoleClaimType,role.FirstOrDefault())
+                               }),
+                Expires = DateTime.UtcNow.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
+                SigningCredentials = new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256),
+                Audience = AuthOptions.AUDIENCE,
+                Issuer = AuthOptions.ISSUER
+            };
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+            var token = tokenHandler.WriteToken(securityToken);
+            return token;
         }
         public async Task<IdentityResult> ConfirmEmail(string userId, string code)
         {
@@ -60,6 +82,7 @@ namespace SCore.BLL.Services
            return _signInManager.SignOutAsync();
            
         }
+        
         
     }
     

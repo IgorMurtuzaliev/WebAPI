@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +14,7 @@ using SCore.WEB.ViewModels;
 
 namespace SCore.WebAPI.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class RolesController : ControllerBase
     {
@@ -25,25 +26,28 @@ namespace SCore.WebAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult<IEnumerable<ApplicationRole>> GetRoles()
         {
             return Ok(roleService.GetAll());
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<ApplicationRole>> GetRole(string id)
         {
             var applicationRole =  await roleService.GetRole(id);
 
             if (applicationRole == null)
             {
-                return NotFound();
+                return NotFound("Role's not found");
             }
             return applicationRole;
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditRole(string id, RoleViewModelEdit model)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Edit(string id, RoleViewModelEdit model)
         {
             var role = new EditRoleModel { Name = model.Name, Id = model.Id };
             if (id != role.Id)
@@ -58,9 +62,9 @@ namespace SCore.WebAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ApplicationRoleExists(id))
+                if (!RoleExists(id))
                 {
-                    return NotFound();
+                    return NotFound("Role's not found");
                 }
                 else
                 {
@@ -72,7 +76,8 @@ namespace SCore.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ApplicationRole>> CreateRole(RoleViewModel model)
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<ApplicationRole>> Create(RoleViewModel model)
         {
             var role = new CreateRoleModel { Name = model.Name };
             await roleService.Create(role);
@@ -81,14 +86,14 @@ namespace SCore.WebAPI.Controllers
             return CreatedAtAction("GetApplicationRole", new { id = model.Id }, role);
         }
 
-        // DELETE: api/ApplicationRoles/5
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ApplicationRole>> DeleteRole(string id)
+        public async Task<ActionResult<ApplicationRole>> Delete(string id)
         {
             var applicationRole = await roleService.GetRole(id);
             if (applicationRole == null)
             {
-                return NotFound();
+                return NotFound("Role's not found");
             }
 
             await roleService.Delete(id);
@@ -97,7 +102,7 @@ namespace SCore.WebAPI.Controllers
             return applicationRole;
         }
 
-        private bool ApplicationRoleExists(string id)
+        private bool RoleExists(string id)
         {
             return roleService.RoleExists(id);
         }

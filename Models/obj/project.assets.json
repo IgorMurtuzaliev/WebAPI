@@ -8734,11 +8734,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\ingwa\\source\\repos\\WebAPI\\Models\\SCore.Models.csproj",
+      "projectUniqueName": "C:\\Users\\ingwa\\source\\repos\\WebAPI\\Models\\SCore.Models.csproj",
       "projectName": "SCore.Models",
-      "projectPath": "c:\\Users\\ingwa\\source\\repos\\WebAPI\\Models\\SCore.Models.csproj",
+      "projectPath": "C:\\Users\\ingwa\\source\\repos\\WebAPI\\Models\\SCore.Models.csproj",
       "packagesPath": "C:\\Users\\ingwa\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\ingwa\\source\\repos\\WebAPI\\Models\\obj\\",
+      "outputPath": "C:\\Users\\ingwa\\source\\repos\\WebAPI\\Models\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
