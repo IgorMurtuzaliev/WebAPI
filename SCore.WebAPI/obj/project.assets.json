@@ -14758,11 +14758,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\ingwa\\source\\repos\\WebAPI\\SCore.WebAPI\\SCore.WebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\ingwa\\source\\repos\\WebAPI\\SCore.WebAPI\\SCore.WebAPI.csproj",
       "projectName": "SCore.WebAPI",
-      "projectPath": "c:\\Users\\ingwa\\source\\repos\\WebAPI\\SCore.WebAPI\\SCore.WebAPI.csproj",
+      "projectPath": "C:\\Users\\ingwa\\source\\repos\\WebAPI\\SCore.WebAPI\\SCore.WebAPI.csproj",
       "packagesPath": "C:\\Users\\ingwa\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\ingwa\\source\\repos\\WebAPI\\SCore.WebAPI\\obj\\",
+      "outputPath": "C:\\Users\\ingwa\\source\\repos\\WebAPI\\SCore.WebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -14781,8 +14781,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "c:\\Users\\ingwa\\source\\repos\\WebAPI\\BLL\\SCore.BLL.csproj": {
-              "projectPath": "c:\\Users\\ingwa\\source\\repos\\WebAPI\\BLL\\SCore.BLL.csproj"
+            "C:\\Users\\ingwa\\source\\repos\\WebAPI\\BLL\\SCore.BLL.csproj": {
+              "projectPath": "C:\\Users\\ingwa\\source\\repos\\WebAPI\\BLL\\SCore.BLL.csproj"
             }
           }
         }

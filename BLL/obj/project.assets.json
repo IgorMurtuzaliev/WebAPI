@@ -10454,11 +10454,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\ingwa\\source\\repos\\WebAPI\\BLL\\SCore.BLL.csproj",
+      "projectUniqueName": "C:\\Users\\ingwa\\source\\repos\\WebAPI\\BLL\\SCore.BLL.csproj",
       "projectName": "SCore.BLL",
-      "projectPath": "c:\\Users\\ingwa\\source\\repos\\WebAPI\\BLL\\SCore.BLL.csproj",
+      "projectPath": "C:\\Users\\ingwa\\source\\repos\\WebAPI\\BLL\\SCore.BLL.csproj",
       "packagesPath": "C:\\Users\\ingwa\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\ingwa\\source\\repos\\WebAPI\\BLL\\obj\\",
+      "outputPath": "C:\\Users\\ingwa\\source\\repos\\WebAPI\\BLL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -10477,11 +10477,11 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "c:\\Users\\ingwa\\source\\repos\\WebAPI\\DAL\\SCore.DAL.csproj": {
-              "projectPath": "c:\\Users\\ingwa\\source\\repos\\WebAPI\\DAL\\SCore.DAL.csproj"
+            "C:\\Users\\ingwa\\source\\repos\\WebAPI\\DAL\\SCore.DAL.csproj": {
+              "projectPath": "C:\\Users\\ingwa\\source\\repos\\WebAPI\\DAL\\SCore.DAL.csproj"
             },
-            "c:\\Users\\ingwa\\source\\repos\\WebAPI\\Models\\SCore.Models.csproj": {
-              "projectPath": "c:\\Users\\ingwa\\source\\repos\\WebAPI\\Models\\SCore.Models.csproj"
+            "C:\\Users\\ingwa\\source\\repos\\WebAPI\\Models\\SCore.Models.csproj": {
+              "projectPath": "C:\\Users\\ingwa\\source\\repos\\WebAPI\\Models\\SCore.Models.csproj"
             }
           }
         }
