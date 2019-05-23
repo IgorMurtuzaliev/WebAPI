@@ -62,6 +62,20 @@ namespace SCore.WebAPI.Controllers
             return Ok(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> ConfirmEmail(string userId, string code)
+        {
+            if (userId == null || code == null)
+            {
+                return NotFound();
+            }
+            IdentityResult result = await service.ConfirmEmail(userId, code);
+            if (result.Succeeded)
+                return RedirectToAction("GetProducts", "Products");
+            else
+                return NotFound();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Login([FromForm]LoginViewModel model)
         {
@@ -80,16 +94,13 @@ namespace SCore.WebAPI.Controllers
             }               
            else return BadRequest(new { message = "Username or password is incorrect" });
         }
+        [Authorize]
         [HttpGet]
-        public async Task<ActionResult<string>> GetUsersAccount(string id)
+        public async Task<IActionResult> GetUsersAccount()
         {
-            if (id == null)
-            {
-                return BadRequest();
-            }
-            User user = await userService.Get(id);
-            var role = await userManager.GetRolesAsync(user);
-            return role.First();
+            var id = User.Claims.First(c => c.Type == "Id").Value;
+            User user = await userManager.FindByIdAsync(id);
+            return Ok(user.UserName);
         }
     }
 }

@@ -120,9 +120,9 @@ namespace SCore.WebAPI.Controllers
             }
             if (ModelState.IsValid)
             {
-                var id = userManager.GetUserId(HttpContext.User);
+                var id = User.Claims.First(c => c.Type == "Id").Value;
                 order.UserId = id;
-                order.User = await userManager.FindByIdAsync(id);
+                User user = await userManager.FindByIdAsync(id);
                 order.ProductOrders = cart.Lines.ToArray();
                 order.Sum = 0;
                 foreach (var line in cart.Lines)
