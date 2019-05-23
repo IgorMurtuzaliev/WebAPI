@@ -14,7 +14,7 @@ using SCore.Models;
 
 namespace SCore.WebAPI.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ReportController : ControllerBase
     {
@@ -36,14 +36,17 @@ namespace SCore.WebAPI.Controllers
 
         [Authorize(Roles = "Admin, Manager")]
         [HttpGet]
+        [Route("report")]
         public async Task<ActionResult<IEnumerable<Order>>> Report(DateTime? from,DateTime? to, string search)
         {
             var orders = await service.Search(from, to, search);
             return Ok(orders);
         }
 
+        [HttpGet]
         [Authorize(Roles = "Admin, Manager")]
-        public async Task<FileResult> ExportingToExcel(DateTime? from, DateTime? to, string search)
+        [Route("export_to_excel")]
+        public async Task<FileResult> ExportToExcel(DateTime? from, DateTime? to, string search)
         {
             using (MemoryStream stream = new MemoryStream())
             {
@@ -52,9 +55,10 @@ namespace SCore.WebAPI.Controllers
                 return File(stream.ToArray(), "application/vnd.orenxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
             }
         }
-
+        [HttpGet]
         [Authorize(Roles = "Admin, Manager")]
-        public async Task<IActionResult> SendingEmail(DateTime? from, DateTime? to, string search)
+        [Route("send_excel_by_email")]
+        public async Task<IActionResult> SendEmail(DateTime? from, DateTime? to, string search)
         {
             await service.SendByEmail(from, to, search);
             return RedirectToAction("FindData", "Home");

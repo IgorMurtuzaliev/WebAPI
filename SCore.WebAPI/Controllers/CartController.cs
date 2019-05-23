@@ -13,7 +13,7 @@ using SCore.WEB.ViewModels;
 
 namespace SCore.WebAPI.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class CartController : ControllerBase
     {
@@ -25,18 +25,19 @@ namespace SCore.WebAPI.Controllers
         }
         [HttpGet]
         [Authorize(Roles = "User")]
+        [Route("cart")]
         public ActionResult CartReport()
         {
             var cart = new CartIndexViewModel
             {
                 Cart = GetCart(),
-                
             };
             return Ok(cart);
         }
         [Authorize(Roles = "User")]
-        [HttpPost]
-        public async Task<ActionResult<Cart>> AddingToCart([FromForm]int id)
+        [HttpGet("{id}")]
+        [Route("add")]
+        public async Task<ActionResult<Cart>> AddToCart(int id)
         {
             var product = await productService.Get(id);
             if (product != null)
@@ -50,7 +51,8 @@ namespace SCore.WebAPI.Controllers
         }
 
         [Authorize(Roles = "User")]
-        public async Task<ActionResult<Cart>> RemovingFromCart([FromForm]int id)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Cart>> RemoveFromCart(int id)
         {
             Product product = await productService.Get(id);
             if (product != null)

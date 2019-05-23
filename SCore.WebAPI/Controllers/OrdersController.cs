@@ -15,7 +15,7 @@ using SCore.WEB.ViewModels;
 
 namespace SCore.WebAPI.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class OrdersController : ControllerBase
     {
@@ -31,7 +31,7 @@ namespace SCore.WebAPI.Controllers
 
         [HttpGet]
         [Authorize(Roles = "User")]
-        public async Task<ActionResult<IEnumerable<Order>>> OrdersList()
+        public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
             var id = User.Claims.First(c => c.Type == "Id").Value;
             User user = await userManager.FindByIdAsync(id);
@@ -40,7 +40,7 @@ namespace SCore.WebAPI.Controllers
 
         [HttpGet("{id}")]
         [Authorize(Roles = "User")]
-        public async Task<ActionResult<Order>> Order(int id)
+        public async Task<ActionResult<Order>> GetOrder(int id)
         {
             var order = await service.Get(id);
             if (order == null)
@@ -52,7 +52,7 @@ namespace SCore.WebAPI.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "User")]
-        public async Task<IActionResult> EditingOrder(int id, [FromForm]Order order)
+        public async Task<IActionResult> Edit(int id, [FromForm]Order order)
         {
             if (id != order.OrderId)
             {
@@ -79,7 +79,7 @@ namespace SCore.WebAPI.Controllers
 
         [HttpPost]
         [Authorize(Roles = "User")]
-        public async Task<ActionResult<Order>> CreatingOrder([FromForm]OrderViewModel model)
+        public async Task<ActionResult<Order>> Create([FromForm]OrderViewModel model)
         {
             var order = new OrderModel
             {
@@ -97,7 +97,7 @@ namespace SCore.WebAPI.Controllers
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "User")]
-        public async Task<ActionResult<Order>> DeletingOrder(int id)
+        public async Task<ActionResult<Order>> Delete(int id)
         {
             var order = await service.Get(id);
             if (order == null)
@@ -113,7 +113,10 @@ namespace SCore.WebAPI.Controllers
         {
             return service.OrderExists(id);
         }
+
+        [HttpPost]
         [Authorize]
+        [Route("checkout")]
         public async Task<IActionResult> Checkout([FromForm]Order order)
         {          
             if (cart.Lines.Count() == 0)
