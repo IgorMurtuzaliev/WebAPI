@@ -25,7 +25,7 @@ using SCore.DAL.Interfaces;
 using SCore.DAL.Repositories;
 using SCore.Models;
 using SCore.Models.Entities;
-
+using log4net;
 namespace SCore.WebAPI
 {
     public class Startup
@@ -134,7 +134,7 @@ namespace SCore.WebAPI
                     name: "default",
                     template: "{controller=Products}/{action=Index}/{id?}");
             });
-
+       
         }
     }
 }
