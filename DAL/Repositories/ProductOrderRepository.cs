@@ -54,6 +54,11 @@ namespace SCore.DAL.Repositories
             throw new NotImplementedException();
         }
 
+        public Task<IEnumerable<ProductOrder>> GetAll(User user)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task Save()
         {
             throw new NotImplementedException();

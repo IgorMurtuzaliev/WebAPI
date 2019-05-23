@@ -49,9 +49,9 @@ namespace SCore.BLL.Services
         {
             return await db.Orders.Get(id);
         }
-        public async Task<IEnumerable<Order>> GetAll()
+        public async Task<IEnumerable<Order>> GetAll(User user)
         {
-            return await db.Orders.GetAll();
+            return await db.Orders.GetAll(user);
         }
 
         public async Task Edit(Order order)

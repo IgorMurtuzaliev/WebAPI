@@ -10,7 +10,7 @@ namespace SCore.BLL.Interfaces
         Task Create(OrderModel orderVM);
         Task<Order> Get(int id);
         Task Delete(int id);
-        Task<IEnumerable<Order>> GetAll();
+        Task<IEnumerable<Order>> GetAll(User user);
         Task Edit(Order product);
         void Dispose(bool disposing);
 

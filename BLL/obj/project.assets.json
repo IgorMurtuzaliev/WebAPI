@@ -10448,23 +10448,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ingwa\\.nuget\\packages\\": {},
+    "C:\\Users\\User\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\ingwa\\source\\repos\\WebAPI\\BLL\\SCore.BLL.csproj",
+      "projectUniqueName": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\BLL\\SCore.BLL.csproj",
       "projectName": "SCore.BLL",
-      "projectPath": "c:\\Users\\ingwa\\source\\repos\\WebAPI\\BLL\\SCore.BLL.csproj",
-      "packagesPath": "C:\\Users\\ingwa\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\ingwa\\source\\repos\\WebAPI\\BLL\\obj\\",
+      "projectPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\BLL\\SCore.BLL.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\BLL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\ingwa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10477,11 +10477,11 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "c:\\Users\\ingwa\\source\\repos\\WebAPI\\DAL\\SCore.DAL.csproj": {
-              "projectPath": "c:\\Users\\ingwa\\source\\repos\\WebAPI\\DAL\\SCore.DAL.csproj"
+            "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\DAL\\SCore.DAL.csproj": {
+              "projectPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\DAL\\SCore.DAL.csproj"
             },
-            "c:\\Users\\ingwa\\source\\repos\\WebAPI\\Models\\SCore.Models.csproj": {
-              "projectPath": "c:\\Users\\ingwa\\source\\repos\\WebAPI\\Models\\SCore.Models.csproj"
+            "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\Models\\SCore.Models.csproj": {
+              "projectPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\Models\\SCore.Models.csproj"
             }
           }
         }

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using SCore.DAL.EF;
 using SCore.DAL.Interfaces;
 using SCore.Models;
@@ -48,11 +49,6 @@ namespace SCore.DAL.Repositories
             await Save();
         }
 
-        //public async Task<IEnumerable<Order>> Find(Func<Order, bool> predicate)
-        //{
-        //    return db.Orders.Where(predicate).ToList();
-        //}
-
         public async Task<Order> Get(int? id)
         {
             return await db.Orders.FindAsync(id);
@@ -67,7 +63,10 @@ namespace SCore.DAL.Repositories
         {
             return await db.Orders.ToListAsync();
         }
-
+        public async Task<IEnumerable<Order>> GetAll(User user)
+        {
+            return await db.Orders.Where(c => c.User == user).ToListAsync();
+        }
         public async Task Save()
         {
             await db.SaveChangesAsync();

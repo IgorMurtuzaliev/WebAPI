@@ -10,7 +10,7 @@ namespace SCore.BLL.Infrastructure
         public const string ISSUER = "http://localhost:44357"; 
         public const string AUDIENCE = "http://localhost:44357";
         const string KEY = "mysupersecret_secretkey!123";  
-        public const int LIFETIME = 5; 
+        public const int LIFETIME = 15; 
         public static SymmetricSecurityKey GetSymmetricSecurityKey()
         {
             return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(KEY));

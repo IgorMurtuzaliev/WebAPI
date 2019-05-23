@@ -1,4 +1,6 @@
-﻿using SCore.BLL.Interfaces;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using SCore.BLL.Interfaces;
 using SCore.BLL.Models;
 using SCore.DAL.EF;
 using SCore.DAL.Interfaces;
@@ -14,11 +16,13 @@ namespace SCore.BLL.Services
         IUnitOfWork db { get; set; }
         private readonly IFileManager fileManager;
         private ApplicationDbContext context;
-        public UserService(IUnitOfWork _db, IFileManager _fileManager,ApplicationDbContext _context)
+        private UserManager<User> userManager;
+        public UserService(IUnitOfWork _db, IFileManager _fileManager,ApplicationDbContext _context, UserManager<User> _userManager)
         {
             db = _db;
             fileManager = _fileManager;
             context = _context;
+            userManager = _userManager;
         }
 
         public async Task Create(UserModel model)
@@ -91,6 +95,19 @@ namespace SCore.BLL.Services
         public bool UserExists(string id)
         {
             return context.Users.Any(e => e.Id == id);
+        }
+        
+        public async Task UserToManager(string id)
+        {
+            User user = await Get(id);
+            await userManager.RemoveFromRoleAsync(user, "User");
+            await userManager.AddToRoleAsync(user, "Manager");
+        }
+        public async Task ManagerToUser(string id)
+        {
+            User user = await Get(id);
+            await userManager.RemoveFromRoleAsync(user, "Manager");
+            await userManager.AddToRoleAsync(user, "User");
         }
     }
 }
