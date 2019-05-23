@@ -35,7 +35,7 @@ namespace SCore.WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> User(string id)
+        public async Task<ActionResult<User>> UserById(string id)
         {
             User user = await userService.Get(id); ;
             if (user == null)

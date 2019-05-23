@@ -59,6 +59,11 @@ namespace SCore.DAL.Repositories
             return await db.Users.ToListAsync();
         }
 
+        public Task<IEnumerable<User>> GetAll(User user)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task Save()
         {
             await db.SaveChangesAsync();

@@ -33,7 +33,9 @@ namespace SCore.WebAPI.Controllers
         [Authorize(Roles = "User")]
         public async Task<ActionResult<IEnumerable<Order>>> OrdersList()
         {
-            return Ok(await service.GetAll());
+            var id = User.Claims.First(c => c.Type == "Id").Value;
+            User user = await userManager.FindByIdAsync(id);
+            return Ok(await service.GetAll(user));
         }
 
         [HttpGet("{id}")]

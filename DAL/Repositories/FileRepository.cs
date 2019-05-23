@@ -1,5 +1,6 @@
 ﻿using SCore.DAL.EF;
 using SCore.DAL.Interfaces;
+using SCore.Models;
 using SCore.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -52,6 +53,11 @@ namespace SCore.DAL.Repositories
         }
 
         public Task<IEnumerable<FileModel>> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<FileModel>> GetAll(User user)
         {
             throw new NotImplementedException();
         }
