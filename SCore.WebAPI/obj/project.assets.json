@@ -14752,23 +14752,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {},
+    "C:\\Users\\ingwa\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\SCore.WebAPI\\SCore.WebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\ingwa\\source\\repos\\WebAPI\\SCore.WebAPI\\SCore.WebAPI.csproj",
       "projectName": "SCore.WebAPI",
-      "projectPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\SCore.WebAPI\\SCore.WebAPI.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\SCore.WebAPI\\obj\\",
+      "projectPath": "C:\\Users\\ingwa\\source\\repos\\WebAPI\\SCore.WebAPI\\SCore.WebAPI.csproj",
+      "packagesPath": "C:\\Users\\ingwa\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ingwa\\source\\repos\\WebAPI\\SCore.WebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ingwa\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -14781,8 +14781,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\BLL\\SCore.BLL.csproj": {
-              "projectPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\BLL\\SCore.BLL.csproj"
+            "C:\\Users\\ingwa\\source\\repos\\WebAPI\\BLL\\SCore.BLL.csproj": {
+              "projectPath": "C:\\Users\\ingwa\\source\\repos\\WebAPI\\BLL\\SCore.BLL.csproj"
             }
           }
         }
