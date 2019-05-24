@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SCore.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -15,5 +16,6 @@ namespace SCore.DAL.Interfaces
         Task Save();
         Task Delete(string id);
         Task<T> Get(string id);
+        Task<IEnumerable<T>> GetAll(User user);
     }
 }

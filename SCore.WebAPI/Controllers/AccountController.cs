@@ -21,7 +21,7 @@ using SCore.WEB.ViewModels;
 
 namespace SCore.WebAPI.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class AccountController : ControllerBase
     {
@@ -39,6 +39,7 @@ namespace SCore.WebAPI.Controllers
             db = _db;
         }
         [HttpPost]
+        [Route("register")]
         public async Task<IActionResult> Register([FromForm]RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -77,6 +78,7 @@ namespace SCore.WebAPI.Controllers
         }
 
         [HttpPost]
+        [Route("login")]
         public async Task<IActionResult> Login([FromForm]LoginViewModel model)
         {
     
@@ -96,7 +98,8 @@ namespace SCore.WebAPI.Controllers
         }
         [Authorize]
         [HttpGet]
-        public async Task<IActionResult> GetUsersAccount()
+        [Route("account")]
+        public async Task<IActionResult> UsersAccount()
         {
             var id = User.Claims.First(c => c.Type == "Id").Value;
             User user = await userManager.FindByIdAsync(id);

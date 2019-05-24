@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/products/getproducts",
+      "launchUrl": "api/products/ProductsList",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,7 +20,7 @@
     "SCore.WebAPI": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/products/getproducts",
+      "launchUrl": "api/products/ProductsList",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

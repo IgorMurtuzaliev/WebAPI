@@ -14,7 +14,7 @@ using SCore.WEB.ViewModels;
 
 namespace SCore.WebAPI.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class RolesController : ControllerBase
     {
@@ -47,7 +47,7 @@ namespace SCore.WebAPI.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> EditRole(string id, RoleViewModelEdit model)
+        public async Task<IActionResult> Edit(string id, RoleViewModelEdit model)
         {
             var role = new EditRoleModel { Name = model.Name, Id = model.Id };
             if (id != role.Id)
@@ -62,7 +62,7 @@ namespace SCore.WebAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ApplicationRoleExists(id))
+                if (!RoleExists(id))
                 {
                     return NotFound("Role's not found");
                 }
@@ -77,7 +77,7 @@ namespace SCore.WebAPI.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult<ApplicationRole>> CreateRole(RoleViewModel model)
+        public async Task<ActionResult<ApplicationRole>> Create(RoleViewModel model)
         {
             var role = new CreateRoleModel { Name = model.Name };
             await roleService.Create(role);
@@ -88,7 +88,7 @@ namespace SCore.WebAPI.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ApplicationRole>> DeleteRole(string id)
+        public async Task<ActionResult<ApplicationRole>> Delete(string id)
         {
             var applicationRole = await roleService.GetRole(id);
             if (applicationRole == null)
@@ -102,7 +102,7 @@ namespace SCore.WebAPI.Controllers
             return applicationRole;
         }
 
-        private bool ApplicationRoleExists(string id)
+        private bool RoleExists(string id)
         {
             return roleService.RoleExists(id);
         }
