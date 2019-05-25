@@ -53,9 +53,15 @@ namespace SCore.WebAPI
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IUnitOfWork, EFUnitOfWork>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddCors(corsOptions =>
+            services.AddCors(options =>
             {
-                corsOptions.AddPolicy("fully permissive", configurePolicy => configurePolicy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials());
+                options.AddPolicy("MyAllowSpecificOrigins",
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:4200")
+                                        .AllowAnyHeader()
+                                        .AllowAnyMethod();
+                });
             });
             services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
             services.AddTransient<IRepository<Product>, ProductRepository>();
@@ -122,7 +128,7 @@ namespace SCore.WebAPI
                 app.UseHsts();
             }
             loggerFactory.AddLog4Net();
-            app.UseCors("fully permissive");
+            app.UseCors("MyAllowSpecificOrigins");
             app.UseSession();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
