@@ -19,7 +19,7 @@ namespace SCore.WEB.ViewModels
         public string Password { get; set; }
 
         [Required]
-        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
+        [Compare("Password", ErrorMessage = "Passwords are not the same")]
         [DataType(DataType.Password)]
         public string PasswordConfirm { get; set; }
         public string CurrentAvatar { get; set; }

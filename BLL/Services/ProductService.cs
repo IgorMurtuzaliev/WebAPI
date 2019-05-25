@@ -40,6 +40,7 @@ namespace SCore.BLL.Services
                 Name = model.Name,
                 Price = model.Price
             };
+
             await db.Products.Create(product);
             await db.Products.Save();
             foreach(var file in model.Images)

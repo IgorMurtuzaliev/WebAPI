@@ -1,13 +1,14 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "2a2d629e53e3c8a7a35621f0564fbbdb3db20486"
+    "signature": "75c8a6d4874a7305f331406478786a7962c05b20"
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.2": {
       "SCore.BLL/1.0.0": {
         "dependencies": {
+          "AutoMapper": "8.1.0",
           "ClosedXML": "0.94.2",
           "MailKit": "2.1.5.1",
           "Microsoft.AspNetCore.Http.Extensions": "2.2.0",
@@ -27,6 +28,18 @@
         },
         "runtime": {
           "SCore.BLL.dll": {}
+        }
+      },
+      "AutoMapper/8.1.0": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.5.0",
+          "System.Reflection.Emit": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AutoMapper.dll": {
+            "assemblyVersion": "8.1.0.0",
+            "fileVersion": "8.1.0.0"
+          }
         }
       },
       "Castle.Core/4.2.1": {
@@ -2554,6 +2567,7 @@
       },
       "SCore.DAL/1.0.0": {
         "dependencies": {
+          "AutoMapper": "8.1.0",
           "ClosedXML": "0.94.2",
           "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.2.0",
@@ -2570,6 +2584,7 @@
       },
       "SCore.Models/1.0.0": {
         "dependencies": {
+          "AutoMapper": "8.1.0",
           "ClosedXML": "0.94.2",
           "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.2.0",
@@ -2596,6 +2611,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AutoMapper/8.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Go75WXHE7p/8CtRaxZnvVEfcSh7xpE6zx9wkgN4I1BxvlzP0hoiTLHSXDYXgv9CoxaRj4ahwzCA/iwdpvyQyOA==",
+      "path": "automapper/8.1.0",
+      "hashPath": "automapper.8.1.0.nupkg.sha512"
     },
     "Castle.Core/4.2.1": {
       "type": "package",

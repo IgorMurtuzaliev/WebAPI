@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.2": {
+      "AutoMapper/8.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.5.0",
+          "System.Reflection.Emit": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/AutoMapper.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AutoMapper.dll": {}
+        }
+      },
       "Castle.Core/4.2.1": {
         "type": "package",
         "dependencies": {
@@ -3494,6 +3507,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
         "dependencies": {
+          "AutoMapper": "8.1.0",
           "ClosedXML": "0.94.2",
           "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.2.0",
@@ -3515,6 +3529,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
         "dependencies": {
+          "AutoMapper": "8.1.0",
           "ClosedXML": "0.94.2",
           "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.2.0",
@@ -3532,6 +3547,23 @@
     }
   },
   "libraries": {
+    "AutoMapper/8.1.0": {
+      "sha512": "Go75WXHE7p/8CtRaxZnvVEfcSh7xpE6zx9wkgN4I1BxvlzP0hoiTLHSXDYXgv9CoxaRj4ahwzCA/iwdpvyQyOA==",
+      "type": "package",
+      "path": "automapper/8.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "automapper.8.1.0.nupkg.sha512",
+        "automapper.nuspec",
+        "lib/net461/AutoMapper.dll",
+        "lib/net461/AutoMapper.pdb",
+        "lib/net461/AutoMapper.xml",
+        "lib/netstandard2.0/AutoMapper.dll",
+        "lib/netstandard2.0/AutoMapper.pdb",
+        "lib/netstandard2.0/AutoMapper.xml"
+      ]
+    },
     "Castle.Core/4.2.1": {
       "sha512": "XSNA0Gc1Zu33L+8+/3Tqt+aFu8QWS8UenVHZ7RenIP5wJfhoLrA4PnNscpxReeo5aBq8PDoGnV8rNaOzIOUo/w==",
       "type": "package",
@@ -10429,6 +10461,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
+      "AutoMapper >= 8.1.0",
       "ClosedXML >= 0.94.2",
       "MailKit >= 2.1.5.1",
       "Microsoft.AspNetCore.Http.Extensions >= 2.2.0",
@@ -10448,23 +10481,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ingwa\\.nuget\\packages\\": {},
+    "C:\\Users\\User\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ingwa\\source\\repos\\WebAPI\\BLL\\SCore.BLL.csproj",
+      "projectUniqueName": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\BLL\\SCore.BLL.csproj",
       "projectName": "SCore.BLL",
-      "projectPath": "C:\\Users\\ingwa\\source\\repos\\WebAPI\\BLL\\SCore.BLL.csproj",
-      "packagesPath": "C:\\Users\\ingwa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ingwa\\source\\repos\\WebAPI\\BLL\\obj\\",
+      "projectPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\BLL\\SCore.BLL.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\BLL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\ingwa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10477,11 +10510,11 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "C:\\Users\\ingwa\\source\\repos\\WebAPI\\DAL\\SCore.DAL.csproj": {
-              "projectPath": "C:\\Users\\ingwa\\source\\repos\\WebAPI\\DAL\\SCore.DAL.csproj"
+            "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\DAL\\SCore.DAL.csproj": {
+              "projectPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\DAL\\SCore.DAL.csproj"
             },
-            "C:\\Users\\ingwa\\source\\repos\\WebAPI\\Models\\SCore.Models.csproj": {
-              "projectPath": "C:\\Users\\ingwa\\source\\repos\\WebAPI\\Models\\SCore.Models.csproj"
+            "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\Models\\SCore.Models.csproj": {
+              "projectPath": "C:\\Users\\User\\source\\repos\\SCore.WebAPI\\Models\\SCore.Models.csproj"
             }
           }
         }
@@ -10495,6 +10528,10 @@
     "frameworks": {
       "netcoreapp2.2": {
         "dependencies": {
+          "AutoMapper": {
+            "target": "Package",
+            "version": "[8.1.0, )"
+          },
           "ClosedXML": {
             "target": "Package",
             "version": "[0.94.2, )"
@@ -10561,13 +10598,5 @@
         "warn": true
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\ingwa\\source\\repos\\WebAPI\\BLL\\obj\\SCore.BLL.csproj.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

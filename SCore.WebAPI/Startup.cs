@@ -55,7 +55,7 @@ namespace SCore.WebAPI
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddCors(corsOptions =>
             {
-                corsOptions.AddPolicy("fully permissive", configurePolicy => configurePolicy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials());
+                corsOptions.AddPolicy("fully permissive", configurePolicy => configurePolicy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200").AllowCredentials());
             });
             services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
             services.AddTransient<IRepository<Product>, ProductRepository>();
