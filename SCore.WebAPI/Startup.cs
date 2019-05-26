@@ -127,7 +127,7 @@ namespace SCore.WebAPI
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-            loggerFactory.AddLog4Net();
+            //loggerFactory.AddLog4Net();
             app.UseCors("MyAllowSpecificOrigins");
             app.UseSession();
             app.UseHttpsRedirection();

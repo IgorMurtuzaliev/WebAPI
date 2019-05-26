@@ -7,8 +7,8 @@ namespace SCore.BLL.Infrastructure
 {
     public class AuthOptions
     {
-        public const string ISSUER = "http://localhost:44357"; 
-        public const string AUDIENCE = "http://localhost:44357";
+        public const string ISSUER = "Issuer"; 
+        public const string AUDIENCE = "Audience";
         const string KEY = "mysupersecret_secretkey!123";  
         public const int LIFETIME = 15; 
         public static SymmetricSecurityKey GetSymmetricSecurityKey()

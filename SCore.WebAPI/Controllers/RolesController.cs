@@ -26,7 +26,7 @@ namespace SCore.WebAPI.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         public ActionResult<IEnumerable<ApplicationRole>> GetRoles()
         {
             return Ok(roleService.GetAll());
@@ -46,7 +46,7 @@ namespace SCore.WebAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(string id, RoleViewModelEdit model)
         {
             var role = new EditRoleModel { Name = model.Name, Id = model.Id };
@@ -76,7 +76,7 @@ namespace SCore.WebAPI.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         public async Task<ActionResult<ApplicationRole>> Create(RoleViewModel model)
         {
             var role = new CreateRoleModel { Name = model.Name };

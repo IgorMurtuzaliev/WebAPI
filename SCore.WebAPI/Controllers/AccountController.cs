@@ -79,7 +79,7 @@ namespace SCore.WebAPI.Controllers
 
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login([FromForm]LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
     
             var user = await userManager.FindByEmailAsync(model.Email);
