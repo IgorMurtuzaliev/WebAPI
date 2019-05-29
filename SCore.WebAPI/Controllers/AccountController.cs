@@ -39,11 +39,12 @@ namespace SCore.WebAPI.Controllers
             db = _db;
         }
         [HttpPost]
-        [Route("register")]
+        [Route("/register")]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
+
                 var register = new RegisterModel
                 {
                     Name = model.Name,
